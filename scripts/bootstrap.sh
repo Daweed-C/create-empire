@@ -53,6 +53,18 @@ add_mod() {
   local level="$1" default_source="$2" slugs="$3" name="$4"
   local token slug src ok=0 out last_err="" expected=""
   IFS='|' read -ra candidates <<< "$slugs"
+  # Register every slug candidate for the prune allowlist and verify pass UP
+  # FRONT, not as candidates get tried: when an ID candidate succeeds first,
+  # the untried slug candidates are still the names the resolved files carry
+  # (learned the hard way — the prune once deleted FTB Quests that the ID
+  # add had just correctly installed).
+  for token in "${candidates[@]}"; do
+    case "$token" in
+      cfid:*|mrid:*) ;;
+      mr:*|cf:*) ALLOWED="$ALLOWED ${token#*:}"; expected="$expected ${token#*:}" ;;
+      *)         ALLOWED="$ALLOWED $token"; expected="$expected $token" ;;
+    esac
+  done
   for token in "${candidates[@]}"; do
     case "$token" in
       mr:*)   src=mr;   slug="${token#mr:}" ;;
@@ -61,10 +73,6 @@ add_mod() {
       mrid:*) src=mrid; slug="${token#mrid:}" ;;
       *)      src="$default_source"; slug="$token" ;;
     esac
-    # Slug candidates double as the post-add verification allowlist;
-    # numeric IDs can't (their resolved slug differs), so ID entries need a
-    # slug candidate alongside them.
-    case "$src" in mr|cf) ALLOWED="$ALLOWED $slug"; expected="$expected $slug" ;; esac
     case "$src" in
       # Packwiz falls back to fuzzy search for names AND urls it can't
       # resolve exactly, and -y silently takes the first hit — that has
