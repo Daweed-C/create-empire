@@ -49,7 +49,11 @@ add_mod() {
       *)    src="$default_source"; slug="$token" ;;
     esac
     if [ "$src" = mr ]; then
-      out=$("$PACKWIZ" modrinth add "$slug" -y 2>&1) && ok=1 && break
+      # Same reasoning as CurseForge below: a bare name falls back to fuzzy
+      # search when the slug doesn't exist (the FTB mods aren't on Modrinth,
+      # which once turned "ftb-quests" into "FTB Quests Optimizer" plus an
+      # anime mod's dependency tree). A URL matches exactly or fails.
+      out=$("$PACKWIZ" modrinth add "https://modrinth.com/mod/$slug" -y 2>&1) && ok=1 && break
     else
       # Pass a full project URL: "curseforge add <name> -y" runs a fuzzy
       # search and silently takes the first hit, which once pulled entirely
@@ -83,9 +87,10 @@ opt cf "minecolonies-compatibility"      "MineColonies Compatibility addon (modd
 opt cf "stylecolonies"                   "Stylecolonies (extra building style packs)"
 
 echo "== Quests =="
-req mr "ftb-quests|ftb-quests-forge"     "FTB Quests"
-req mr "ftb-teams|ftb-teams-forge"       "FTB Teams"
-req mr "ftb-library|ftb-library-forge"   "FTB Library"
+# FTB publishes on CurseForge, not Modrinth.
+req cf "ftb-quests-forge|ftb-quests"     "FTB Quests"
+req cf "ftb-teams-forge|ftb-teams"       "FTB Teams"
+req cf "ftb-library-forge|ftb-library"   "FTB Library"
 
 echo "== Food & farming =="
 req mr "farmers-delight"                 "Farmer's Delight"
