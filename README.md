@@ -33,6 +33,31 @@ packs on every push:
 
 Tagging a commit `v*` publishes the same files as a GitHub Release.
 
+## Keeping your Prism instance up to date automatically
+
+Every push also publishes the fully resolved pack to the **`deploy`** branch.
+[packwiz-installer](https://packwiz.infra.link/tutorials/installing/packwiz-installer/)
+can sync a Prism instance against it on every launch, downloading only files
+that changed. Requires the repository to be **public**.
+
+One-time setup:
+
+1. Download `packwiz-installer-bootstrap.jar` from
+   [packwiz-installer-bootstrap releases](https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest)
+   and drop it into the instance's `minecraft` folder
+   (Prism: right-click instance → **Folder**).
+2. Prism: right-click instance → **Settings → Custom commands**, enable
+   custom commands, and set the **pre-launch command** to:
+
+   ```
+   "$INST_JAVA" -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/Daweed-C/create-empire/deploy/pack.toml
+   ```
+
+From then on, pressing Play checks the repo and applies any changes before
+the game starts. Note: if the pack ever moves to a new NeoForge/Minecraft
+version, update the instance's loader version in Prism (**Version** page)
+by hand — the sync updates mods and configs, not the loader itself.
+
 ## Building locally
 
 Requires [packwiz](https://packwiz.infra.link/installation/) and `curl`:
