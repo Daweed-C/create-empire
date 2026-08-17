@@ -58,6 +58,25 @@ the game starts. Note: if the pack ever moves to a new NeoForge/Minecraft
 version, update the instance's loader version in Prism (**Version** page)
 by hand — the sync updates mods and configs, not the loader itself.
 
+## Optional manual add-ons
+
+Two style extras can't ship inside the pack but are a one-minute personal
+install (the auto-sync never touches files it didn't install, so they
+survive updates):
+
+- **[SmallColonies ME / Littleton](https://www.curseforge.com/minecraft/mc-mods/smallcolonies-me)**
+  (compact vanilla-look colony style) — author opted out of automated
+  downloads; download the 1.21.1 jar and drop it into the instance's
+  `minecraft/mods/` folder.
+- **[MineColonies Vanillafied](https://www.curseforge.com/minecraft/texture-packs/minecolonies-vanillafied)**
+  (retextures MineColonies' shingle roofs / decorative blocks to look
+  vanilla) — made for 1.20.1, untested on 1.21: drop the zip into
+  `minecraft/resourcepacks/`, enable it in Options → Resource Packs, and
+  judge with your own eyes.
+
+The long-term answer to vanilla-looking colonies is the home-grown **Empire
+style** — see [`sources/empire-style/README.md`](sources/empire-style/README.md).
+
 ## Building locally
 
 Requires [packwiz](https://packwiz.infra.link/installation/) and `curl`:
