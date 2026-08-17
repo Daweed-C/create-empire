@@ -38,7 +38,10 @@ failures_required=0
 # manifest (MineColonies stack, Sable for Aeronautics, etc.). Anything
 # resolved that is neither a manifest candidate nor listed here gets pruned —
 # packwiz's search fallback has pulled in unrelated mods before.
-KNOWN_DEPS="structurize blockui domum-ornamentum multi-piston sable sophisticated-core yungs-api architectury-api rpl cristel-lib flywheel ponder"
+# kotlin-for-forge: Slice & Dice. minecolonies-tweaks: MineColonies
+# Compatibility. create-dragons-plus: Central Kitchen + Enchantment Industry.
+# (All three confirmed by in-game dependency errors after being pruned.)
+KNOWN_DEPS="structurize blockui domum-ornamentum multi-piston sable sophisticated-core yungs-api architectury-api rpl cristel-lib flywheel ponder kotlin-for-forge minecolonies-tweaks create-dragons-plus"
 
 ALLOWED=""
 REQ_CHECKS=()
@@ -130,7 +133,10 @@ echo "== Create addons: rails, sky, defense, factory =="
 opt mr "create-big-cannons"              "Create Big Cannons"
 opt mr "create-connected"                "Create: Connected"
 opt mr "copycats|copycats-plus"          "Create: Copycats+"
-opt mr "create-structures|cf:create-structures" "Create: Structures"
+# Modrinth only: the CurseForge slug "create-structures" is an unrelated
+# "Create Structure" mod (needs createdeco/bits_n_bobs). Stays skipped until
+# the real Create: Structures ships a 1.21.1 NeoForge build.
+opt mr "create-structures"               "Create: Structures"
 opt mr "bells-and-whistles|bellsandwhistles" "Create: Bells & Whistles"
 opt mr "create-enchantment-industry"     "Create: Enchantment Industry"
 opt mr "create-diesel-generators"        "Create: Diesel Generators"
