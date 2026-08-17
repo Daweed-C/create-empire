@@ -1,0 +1,67 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "4_air_age"
+	group: ""
+	icon: { id: "minecraft:phantom_membrane" }
+	id: "0000000000000400"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Rails conquer distance. &eAeronautics&r conquers terrain."
+				""
+				"Create: Aeronautics (with the Sable physics engine) lets you assemble genuine flying machines — lift, drag and propeller physics included. Read its in-game guide before you build; physics does not forgive optimists."
+			]
+			icon: { id: "minecraft:feather" }
+			id: "0000000000000401"
+			rewards: [{ id: "0000000000000481", item: "minecraft:phantom_membrane", count: 4, type: "item" }]
+			size: 1.5d
+			tasks: [{ id: "0000000000000441", title: "Read the Aeronautics guide / craft your first airship component", type: "checkmark" }]
+			title: "Defying Gravity"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000401"]
+			description: [
+				"Build and fly your &efirst airship&r. A simple balloon-and-propeller design is enough — it just has to take off, steer, and land somewhere you meant it to."
+			]
+			icon: { id: "minecraft:white_wool" }
+			id: "0000000000000402"
+			rewards: [{ id: "0000000000000482", item: "minecraft:diamond", count: 4, type: "item" }]
+			tasks: [{ id: "0000000000000442", title: "Maiden flight completed (takeoff, steer, land)", type: "checkmark" }]
+			title: "Maiden Flight"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000402"]
+			description: [
+				"Found a colony somewhere &erails can't reasonably go&r — a mountaintop, an island, a mesa across the sea — and supply it by air."
+			]
+			icon: { id: "minecolonies:blockhuttownhall" }
+			id: "0000000000000403"
+			rewards: [{ id: "0000000000000483", item: "minecraft:emerald_block", count: 4, type: "item" }]
+			tasks: [{ id: "0000000000000443", title: "Remote colony founded & supplied by airship", type: "checkmark" }]
+			title: "The Sky Harbor"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000403"]
+			description: [
+				"Raiders adapt. So should you. Fortify your empire with &eCreate Big Cannons&r artillery, guard towers on every approach, and — if you're feeling theatrical — an armed patrol airship."
+			]
+			icon: { id: "minecraft:tnt" }
+			id: "0000000000000404"
+			rewards: [{ id: "0000000000000484", item: "minecraft:gunpowder", count: 32, type: "item" }]
+			tasks: [{ id: "0000000000000444", title: "Colony defended by artillery or an armed airship", type: "checkmark" }]
+			title: "Peace Through Superior Firepower"
+			x: 6.0d
+			y: 0.0d
+		}
+	]
+	title: "Chapter IV · The Air Age"
+}

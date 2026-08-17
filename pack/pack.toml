@@ -1,0 +1,13 @@
+name = "Create: Empire"
+author = "Daweed-C"
+version = "0.1.0"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "93a3feef111a7b1d481ef7a89763ec4517b7e7923cc37dfd57b031ac960402a0"
+
+[versions]
+minecraft = "1.21.1"
+neoforge = "21.1.186"

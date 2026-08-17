@@ -1,0 +1,33 @@
+hash-format = "sha256"
+
+[[files]]
+file = "config/ftbquests/quests/chapter_groups.snbt"
+hash = "e57d8311aec9f524911ed1313cabf138bb7fa5a2d3ba985a00a2a267ff35ef78"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/1_hamlet.snbt"
+hash = "6a16ee27c039ce0437e2b0d104dfc3da9dfac02e0d64137cb7fe766272acfd52"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/2_foundry_and_fields.snbt"
+hash = "129a7a61a1d95c1da2501cb57bc7ea9d49e3520fe16bdbbd8d54c7456efb50b7"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/3_rail_age.snbt"
+hash = "d696c16a422272b3504d0744d022776c163214694f15b308963fb7d581017a90"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/4_air_age.snbt"
+hash = "7a0ab2c50b92a1ca7318180789552763485cbdf733d808df6f202d56d01058e6"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/5_empire.snbt"
+hash = "a3182aa4792dd38ccd1ab7b6353429acf19850dbb4d42606e465baf53a9c97a8"
+
+[[files]]
+file = "config/ftbquests/quests/data.snbt"
+hash = "51d8fe8647af8b81422361160c4d760e45a1b2e46a483e8a5f13512e76df7b1c"
+
+[[files]]
+file = "defaultconfigs/minecolonies-server.toml"
+hash = "59e45a45b7af361fdaa2e8d172089e21ad9dfba4a09d5c885ad9fd5a50c8424a"
