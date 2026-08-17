@@ -51,7 +51,11 @@ add_mod() {
     if [ "$src" = mr ]; then
       out=$("$PACKWIZ" modrinth add "$slug" -y 2>&1) && ok=1 && break
     else
-      out=$("$PACKWIZ" curseforge add "$slug" -y 2>&1) && ok=1 && break
+      # Pass a full project URL: "curseforge add <name> -y" runs a fuzzy
+      # search and silently takes the first hit, which once pulled entirely
+      # unrelated mods into the pack. A URL resolves to exactly one project
+      # or fails cleanly.
+      out=$("$PACKWIZ" curseforge add "https://www.curseforge.com/minecraft/mc-mods/$slug" -y 2>&1) && ok=1 && break
     fi
     last_err=$(printf '%s' "$out" | tail -1)
   done
@@ -148,6 +152,15 @@ if [ -d ../sources/datapack/create-empire-compat ]; then
 fi
 
 "$PACKWIZ" refresh
+
+# Full manifest of what actually got resolved — every jar the pack will
+# install must correspond to a line here. Anything unexpected means a lookup
+# matched the wrong project.
+{
+  echo
+  echo "-- resolved mod files --"
+  ls mods/*.pw.toml 2>/dev/null | sed 's|^mods/||; s|\.pw\.toml$||' | sort
+} >> "$REPORT"
 
 echo
 echo "==== bootstrap summary (bootstrap-report.txt) ===="
