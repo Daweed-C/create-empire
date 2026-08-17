@@ -34,24 +34,34 @@ fi
 
 failures_required=0
 
+# Candidates are separated by "|". Each candidate may carry an explicit
+# source prefix ("mr:slug" for Modrinth, "cf:slug" for CurseForge); without a
+# prefix it uses the mod's default source. This lets any mod fall back to the
+# other store, e.g. "minecolonies|cf:minecolonies".
 add_mod() {
-  local level="$1" source="$2" slugs="$3" name="$4"
-  local slug ok=0
+  local level="$1" default_source="$2" slugs="$3" name="$4"
+  local token slug src ok=0 out last_err=""
   IFS='|' read -ra candidates <<< "$slugs"
-  for slug in "${candidates[@]}"; do
-    if [ "$source" = mr ]; then
-      "$PACKWIZ" modrinth add "$slug" -y >/dev/null 2>&1 && ok=1 && break
+  for token in "${candidates[@]}"; do
+    case "$token" in
+      mr:*) src=mr; slug="${token#mr:}" ;;
+      cf:*) src=cf; slug="${token#cf:}" ;;
+      *)    src="$default_source"; slug="$token" ;;
+    esac
+    if [ "$src" = mr ]; then
+      out=$("$PACKWIZ" modrinth add "$slug" -y 2>&1) && ok=1 && break
     else
-      "$PACKWIZ" curseforge add "$slug" -y >/dev/null 2>&1 && ok=1 && break
+      out=$("$PACKWIZ" curseforge add "$slug" -y 2>&1) && ok=1 && break
     fi
+    last_err=$(printf '%s' "$out" | tail -1)
   done
   if [ "$ok" = 1 ]; then
-    echo "OK       $name ($source:$slug)" | tee -a "$REPORT"
+    echo "OK       $name ($src:$slug)" | tee -a "$REPORT"
   elif [ "$level" = required ]; then
-    echo "MISSING  $name ($source:$slugs) — REQUIRED" | tee -a "$REPORT"
+    echo "MISSING  $name ($slugs) — REQUIRED — last error: $last_err" | tee -a "$REPORT"
     failures_required=$((failures_required + 1))
   else
-    echo "skipped  $name ($source:$slugs) — no 1.21.1 NeoForge build found (optional)" | tee -a "$REPORT"
+    echo "skipped  $name ($slugs) — no 1.21.1 NeoForge build found (optional) — last error: $last_err" | tee -a "$REPORT"
   fi
 }
 
@@ -64,7 +74,7 @@ req mr "create-steam-n-rails-1.21.1|steam-n-rails" "Create: Steam 'n' Rails (Neo
 req mr "create-aeronautics"              "Create: Aeronautics (pulls in Sable)"
 
 echo "== Core: Colony =="
-req mr "minecolonies"                    "MineColonies (pulls in Structurize/BlockUI/Domum/Multi-Piston)"
+req mr "minecolonies|cf:minecolonies"    "MineColonies (pulls in Structurize/BlockUI/Domum/Multi-Piston)"
 opt cf "minecolonies-compatibility"      "MineColonies Compatibility addon (modded food & crops)"
 opt cf "stylecolonies"                   "Stylecolonies (extra building style packs)"
 
@@ -82,11 +92,11 @@ echo "== Create addons: rails, sky, defense, factory =="
 opt mr "create-big-cannons"              "Create Big Cannons"
 opt mr "create-connected"                "Create: Connected"
 opt mr "copycats|copycats-plus"          "Create: Copycats+"
-opt mr "create-structures"               "Create: Structures"
+opt mr "create-structures|cf:create-structures" "Create: Structures"
 opt mr "bells-and-whistles|bellsandwhistles" "Create: Bells & Whistles"
 opt mr "create-enchantment-industry"     "Create: Enchantment Industry"
 opt mr "create-diesel-generators"        "Create: Diesel Generators"
-opt mr "create-blocks-and-bogies|blocks-and-bogies" "Create: Blocks & Bogies"
+opt mr "create-blocks-and-bogies|blocks-and-bogies|cf:create-blocks-and-bogies" "Create: Blocks & Bogies"
 
 echo "== Storage & QoL =="
 req mr "jei"                             "JEI"
