@@ -34,35 +34,54 @@ fi
 
 failures_required=0
 
+# Dependency slugs that packwiz is allowed to auto-install alongside the
+# manifest (MineColonies stack, Sable for Aeronautics, etc.). Anything
+# resolved that is neither a manifest candidate nor listed here gets pruned —
+# packwiz's search fallback has pulled in unrelated mods before.
+KNOWN_DEPS="structurize blockui domum-ornamentum multi-piston sable sophisticated-core yungs-api architectury-api rpl cristel-lib flywheel ponder"
+
+ALLOWED=""
+REQ_CHECKS=()
+OPT_CHECKS=()
+
 # Candidates are separated by "|". Each candidate may carry an explicit
-# source prefix ("mr:slug" for Modrinth, "cf:slug" for CurseForge); without a
+# source prefix ("mr:slug" for Modrinth, "cf:slug" for CurseForge,
+# "cfid:<numeric id>" / "mrid:<project id>" for exact store IDs); without a
 # prefix it uses the mod's default source. This lets any mod fall back to the
 # other store, e.g. "minecolonies|cf:minecolonies".
 add_mod() {
   local level="$1" default_source="$2" slugs="$3" name="$4"
-  local token slug src ok=0 out last_err=""
+  local token slug src ok=0 out last_err="" expected=""
   IFS='|' read -ra candidates <<< "$slugs"
   for token in "${candidates[@]}"; do
     case "$token" in
-      mr:*) src=mr; slug="${token#mr:}" ;;
-      cf:*) src=cf; slug="${token#cf:}" ;;
-      *)    src="$default_source"; slug="$token" ;;
+      mr:*)   src=mr;   slug="${token#mr:}" ;;
+      cf:*)   src=cf;   slug="${token#cf:}" ;;
+      cfid:*) src=cfid; slug="${token#cfid:}" ;;
+      mrid:*) src=mrid; slug="${token#mrid:}" ;;
+      *)      src="$default_source"; slug="$token" ;;
     esac
-    if [ "$src" = mr ]; then
-      # Same reasoning as CurseForge below: a bare name falls back to fuzzy
-      # search when the slug doesn't exist (the FTB mods aren't on Modrinth,
-      # which once turned "ftb-quests" into "FTB Quests Optimizer" plus an
-      # anime mod's dependency tree). A URL matches exactly or fails.
-      out=$("$PACKWIZ" modrinth add "https://modrinth.com/mod/$slug" -y 2>&1) && ok=1 && break
-    else
-      # Pass a full project URL: "curseforge add <name> -y" runs a fuzzy
-      # search and silently takes the first hit, which once pulled entirely
-      # unrelated mods into the pack. A URL resolves to exactly one project
-      # or fails cleanly.
-      out=$("$PACKWIZ" curseforge add "https://www.curseforge.com/minecraft/mc-mods/$slug" -y 2>&1) && ok=1 && break
-    fi
+    # Slug candidates double as the post-add verification allowlist;
+    # numeric IDs can't (their resolved slug differs), so ID entries need a
+    # slug candidate alongside them.
+    case "$src" in mr|cf) ALLOWED="$ALLOWED $slug"; expected="$expected $slug" ;; esac
+    case "$src" in
+      # Packwiz falls back to fuzzy search for names AND urls it can't
+      # resolve exactly, and -y silently takes the first hit — that has
+      # pulled entirely unrelated mods into the pack twice. IDs are immune;
+      # slug/url misses are caught by the prune + verify pass below.
+      mr)   out=$("$PACKWIZ" modrinth add "https://modrinth.com/mod/$slug" -y 2>&1) && ok=1 && break ;;
+      mrid) out=$("$PACKWIZ" modrinth add --project-id "$slug" -y 2>&1) && ok=1 && break ;;
+      cf)   out=$("$PACKWIZ" curseforge add "https://www.curseforge.com/minecraft/mc-mods/$slug" -y 2>&1) && ok=1 && break ;;
+      cfid) out=$("$PACKWIZ" curseforge add --addon-id "$slug" -y 2>&1) && ok=1 && break ;;
+    esac
     last_err=$(printf '%s' "$out" | tail -1)
   done
+  if [ "$level" = required ]; then
+    REQ_CHECKS+=("$name::$expected")
+  else
+    OPT_CHECKS+=("$name::$expected")
+  fi
   if [ "$ok" = 1 ]; then
     echo "OK       $name ($src:$slug)" | tee -a "$REPORT"
   elif [ "$level" = required ]; then
@@ -87,10 +106,12 @@ opt cf "minecolonies-compatibility"      "MineColonies Compatibility addon (modd
 opt cf "stylecolonies"                   "Stylecolonies (extra building style packs)"
 
 echo "== Quests =="
-# FTB publishes on CurseForge, not Modrinth.
-req cf "ftb-quests-forge|ftb-quests"     "FTB Quests"
-req cf "ftb-teams-forge|ftb-teams"       "FTB Teams"
-req cf "ftb-library-forge|ftb-library"   "FTB Library"
+# FTB publishes on CurseForge, not Modrinth. Resolved by numeric project ID
+# because even the URL form fuzzy-matched wrong projects; the slug candidate
+# after each ID is what the verify pass expects to find on disk.
+req cf "cfid:289412|ftb-quests-forge"    "FTB Quests"
+req cf "cfid:404468|ftb-teams-forge"     "FTB Teams"
+req cf "cfid:404465|ftb-library-forge"   "FTB Library"
 
 echo "== Food & farming =="
 req mr "farmers-delight"                 "Farmer's Delight"
@@ -156,7 +177,44 @@ if [ -d ../sources/datapack/create-empire-compat ]; then
     && echo "OK       bundled create-empire-compat datapack" | tee -a "$REPORT"
 fi
 
+# --- Prune: whitelist enforcement -------------------------------------------
+# Delete every resolved metafile that is neither a manifest candidate nor a
+# known dependency. This is the hard backstop against packwiz's fuzzy-search
+# fallback silently substituting the wrong project.
+for f in mods/*.pw.toml; do
+  [ -e "$f" ] || continue
+  base=$(basename "$f" .pw.toml)
+  case " $ALLOWED $KNOWN_DEPS " in
+    *" $base "*) ;;
+    *) rm -f "$f"
+       echo "PRUNED   $base — resolved but not in manifest or known dependencies" | tee -a "$REPORT" ;;
+  esac
+done
+
 "$PACKWIZ" refresh
+
+# --- Verify: required mods must exist on disk under an expected name --------
+# An add can exit 0 while having installed the wrong project (now pruned), so
+# "OK" lines alone prove nothing — presence of the expected file does.
+for entry in "${REQ_CHECKS[@]}"; do
+  name="${entry%%::*}"; expected="${entry#*::}"
+  found=0
+  for s in $expected; do
+    [ -f "mods/$s.pw.toml" ] && found=1 && break
+  done
+  if [ "$found" = 0 ]; then
+    echo "VERIFY FAIL  required '$name' has no resolved file (expected one of:$expected)" | tee -a "$REPORT"
+    failures_required=$((failures_required + 1))
+  fi
+done
+for entry in "${OPT_CHECKS[@]}"; do
+  name="${entry%%::*}"; expected="${entry#*::}"
+  found=0
+  for s in $expected; do
+    [ -f "mods/$s.pw.toml" ] && found=1 && break
+  done
+  [ "$found" = 0 ] && echo "note     optional '$name' not present after verification" | tee -a "$REPORT"
+done
 
 # Full manifest of what actually got resolved — every jar the pack will
 # install must correspond to a line here. Anything unexpected means a lookup

@@ -45,6 +45,7 @@ jobs:
         if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/')
         run: |
           cd pack
+          cp ../bootstrap-report.txt . || true
           git init -b deploy
           git -c user.name="github-actions" -c user.email="actions@github.com" add -A
           git -c user.name="github-actions" -c user.email="actions@github.com" commit -m "Resolved pack from ${GITHUB_SHA}"
