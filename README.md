@@ -64,10 +64,11 @@ Two style extras can't ship inside the pack but are a one-minute personal
 install (the auto-sync never touches files it didn't install, so they
 survive updates):
 
-- **[SmallColonies ME / Littleton](https://www.curseforge.com/minecraft/mc-mods/smallcolonies-me)**
-  (compact vanilla-look colony style) — author opted out of automated
-  downloads; download the 1.21.1 jar and drop it into the instance's
-  `minecraft/mods/` folder.
+- **[SmallColonies](https://www.curseforge.com/minecraft/mc-mods/smallcolonies)
+  and [SmallColonies ME](https://www.curseforge.com/minecraft/mc-mods/smallcolonies-me)**
+  (Littleton — compact vanilla-look colony styles; both have 1.21.1 builds) —
+  author opted out of automated downloads; download the 1.21.1 jars and drop
+  them into the instance's `minecraft/mods/` folder.
 - **[MineColonies Vanillafied](https://www.curseforge.com/minecraft/texture-packs/minecolonies-vanillafied)**
   (retextures MineColonies' shingle roofs / decorative blocks to look
   vanilla) — made for 1.20.1, untested on 1.21: drop the zip into

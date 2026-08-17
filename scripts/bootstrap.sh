@@ -117,12 +117,10 @@ echo "== Core: Colony =="
 req mr "minecolonies|cf:minecolonies"    "MineColonies (pulls in Structurize/BlockUI/Domum/Multi-Piston)"
 opt cf "minecolonies-compatibility"      "MineColonies Compatibility addon (modded food & crops)"
 opt cf "stylecolonies"                   "Stylecolonies (extra building style packs incl. Create-themed Steampunk)"
-# SmallColonies ME's author opted out of third-party API downloads, which
-# blocks .mrpack export — install it manually if wanted (drop the jar from
-# its CurseForge page into the instance's mods folder; the sync leaves
-# manually-added files alone). Base SmallColonies stays listed for whenever
-# a 1.21.1 build appears.
-opt cf "smallcolonies"                   "SmallColonies/Littleton (compact vanilla-friendly styles)"
+# SmallColonies & SmallColonies ME (Littleton styles) both have 1.21.1
+# builds, but their author opted out of third-party API downloads, which
+# blocks .mrpack export. Manual install only — see README "Optional manual
+# add-ons". Do not re-add here.
 opt cf "cftx:minecolonies-vanillafied"   "MineColonies Vanillafied (vanilla-look retexture, resource pack)"
 
 echo "== Quests =="
