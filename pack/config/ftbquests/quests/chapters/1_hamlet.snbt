@@ -14,7 +14,7 @@
 				""
 				"Somewhere out there is a valley that will one day be the heart of an empire. For now, you need a place to put four settlers and a dream."
 				""
-				"Craft (or find in your starter gear) the &eSupply Camp&r and deploy it on open ground — it contains everything needed to found a colony."
+				"Craft (or find in your starter gear) the Supply Camp and deploy it on open ground — it contains everything needed to found a colony."
 			]
 			icon: { id: "minecolonies:supplycampdeployer" }
 			id: "0000000000000101"
@@ -28,7 +28,7 @@
 		{
 			dependencies: ["0000000000000101"]
 			description: [
-				"Place the &eTown Hall&r block from the supply camp and claim your land."
+				"Place the Town Hall block from the supply camp and claim your land."
 				""
 				"Congratulations — you are now the governor of the smallest municipality in the world. Population: you."
 			]
@@ -43,9 +43,9 @@
 		{
 			dependencies: ["0000000000000102"]
 			description: [
-				"Nothing gets built without a &eBuilder&r. Craft the Builder's Hut, place it, and assign your first citizen."
+				"Nothing gets built without a Builder. Craft the Builder's Hut, place it, and assign your first citizen."
 				""
-				"Tip: the build tool lets you preview every structure before committing. You can also scan &oyour own&r vanilla-style buildings with the Scan Tool and use them as this colony's style."
+				"Tip: the build tool lets you preview every structure before committing. You can also scan your own vanilla-style buildings with the Scan Tool and use them as this colony's style."
 			]
 			icon: { id: "minecolonies:blockhutbuilder" }
 			id: "0000000000000103"
@@ -58,7 +58,7 @@
 		{
 			dependencies: ["0000000000000103"]
 			description: [
-				"Citizens need food and shelter before they need industry. Build a &eTavern&r — it houses four citizens and attracts new arrivals."
+				"Citizens need food and shelter before they need industry. Build a Tavern — it houses four citizens and attracts new arrivals."
 			]
 			icon: { id: "minecolonies:blockhuttavern" }
 			id: "0000000000000104"
@@ -71,7 +71,7 @@
 		{
 			dependencies: ["0000000000000103"]
 			description: [
-				"A &eFarmer&r feeds the colony while you build the machines that will one day feed a nation."
+				"A Farmer feeds the colony while you build the machines that will one day feed a nation."
 			]
 			icon: { id: "minecolonies:blockhutfarmer" }
 			id: "0000000000000105"
@@ -84,9 +84,9 @@
 		{
 			dependencies: ["0000000000000104", "0000000000000105"]
 			description: [
-				"Raiders have noticed your smoke on the horizon. Build a &eGuard Tower&r before they pay a visit."
+				"Raiders have noticed your smoke on the horizon. Build a Guard Tower before they pay a visit."
 				""
-				"Raids in this pack are tuned &charder than default&r. Walls are not decoration."
+				"Raids in this pack are tuned harder than default. Walls are not decoration."
 			]
 			icon: { id: "minecolonies:blockhutguardtower" }
 			id: "0000000000000106"

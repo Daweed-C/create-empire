@@ -63,7 +63,7 @@ add_mod() {
   # add had just correctly installed).
   for token in "${candidates[@]}"; do
     case "$token" in
-      cfid:*|mrid:*) ;;
+      cfid:*|mrid:*|cftx:*) ;;  # ids resolve to other slugs; texture packs don't land in mods/
       mr:*|cf:*) ALLOWED="$ALLOWED ${token#*:}"; expected="$expected ${token#*:}" ;;
       *)         ALLOWED="$ALLOWED $token"; expected="$expected $token" ;;
     esac
@@ -74,6 +74,7 @@ add_mod() {
       cf:*)   src=cf;   slug="${token#cf:}" ;;
       cfid:*) src=cfid; slug="${token#cfid:}" ;;
       mrid:*) src=mrid; slug="${token#mrid:}" ;;
+      cftx:*) src=cftx; slug="${token#cftx:}" ;;
       *)      src="$default_source"; slug="$token" ;;
     esac
     case "$src" in
@@ -85,6 +86,7 @@ add_mod() {
       mrid) out=$("$PACKWIZ" modrinth add --project-id "$slug" -y 2>&1) && ok=1 && break ;;
       cf)   out=$("$PACKWIZ" curseforge add "https://www.curseforge.com/minecraft/mc-mods/$slug" -y 2>&1) && ok=1 && break ;;
       cfid) out=$("$PACKWIZ" curseforge add --addon-id "$slug" -y 2>&1) && ok=1 && break ;;
+      cftx) out=$("$PACKWIZ" curseforge add "https://www.curseforge.com/minecraft/texture-packs/$slug" -y 2>&1) && ok=1 && break ;;
     esac
     last_err=$(printf '%s' "$out" | tail -1)
   done
@@ -114,7 +116,9 @@ req mr "create-aeronautics"              "Create: Aeronautics (pulls in Sable)"
 echo "== Core: Colony =="
 req mr "minecolonies|cf:minecolonies"    "MineColonies (pulls in Structurize/BlockUI/Domum/Multi-Piston)"
 opt cf "minecolonies-compatibility"      "MineColonies Compatibility addon (modded food & crops)"
-opt cf "stylecolonies"                   "Stylecolonies (extra building style packs)"
+opt cf "stylecolonies"                   "Stylecolonies (extra building style packs incl. Create-themed Steampunk)"
+opt cf "smallcolonies-me|smallcolonies"  "SmallColonies/Littleton (compact vanilla-friendly styles)"
+opt cf "cftx:minecolonies-vanillafied"   "MineColonies Vanillafied (vanilla-look retexture, resource pack)"
 
 echo "== Quests =="
 # FTB publishes on CurseForge, not Modrinth. Resolved by numeric project ID

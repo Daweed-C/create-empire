@@ -10,9 +10,9 @@
 	quests: [
 		{
 			description: [
-				"Your citizens work with their hands. You are going to work with &erotation&r."
+				"Your citizens work with their hands. You are going to work with rotation."
 				""
-				"Craft &eAndesite Alloy&r — the humble ingredient behind every Create machine you will ever build."
+				"Craft Andesite Alloy — the humble ingredient behind every Create machine you will ever build."
 			]
 			icon: { id: "create:andesite_alloy" }
 			id: "0000000000000201"
@@ -26,7 +26,7 @@
 		{
 			dependencies: ["0000000000000201"]
 			description: [
-				"Every machine needs power. A &eWater Wheel&r on a stream is the classic first generator — cheap, silent, and it looks right at home next to a vanilla village."
+				"Every machine needs power. A Water Wheel on a stream is the classic first generator — cheap, silent, and it looks right at home next to a vanilla village."
 			]
 			icon: { id: "create:water_wheel" }
 			id: "0000000000000202"
@@ -39,7 +39,7 @@
 		{
 			dependencies: ["0000000000000202"]
 			description: [
-				"A &eMillstone&r grinds wheat into flour without a single villager lifting a finger. Your farmer grows it, your machines process it."
+				"A Millstone grinds wheat into flour without a single villager lifting a finger. Your farmer grows it, your machines process it."
 			]
 			icon: { id: "create:millstone" }
 			id: "0000000000000203"
@@ -52,7 +52,7 @@
 		{
 			dependencies: ["0000000000000202"]
 			description: [
-				"The &eMechanical Press&r stamps sheets and compacts blocks. It is the anvil that never sleeps — the heart of your first real production line."
+				"The Mechanical Press stamps sheets and compacts blocks. It is the anvil that never sleeps — the heart of your first real production line."
 			]
 			icon: { id: "create:mechanical_press" }
 			id: "0000000000000204"
@@ -65,9 +65,9 @@
 		{
 			dependencies: ["0000000000000203"]
 			description: [
-				"Time to cook like you mean it. Farmer's Delight's &eCooking Pot&r turns your automated flour, vegetables and meat into proper meals."
+				"Time to cook like you mean it. Farmer's Delight's Cooking Pot turns your automated flour, vegetables and meat into proper meals."
 				""
-				"Well-fed citizens are &ehappier and work faster&r — the compat patches in this pack let colonists eat modded meals, so your kitchens literally feed the empire."
+				"Well-fed citizens are happier and work faster — the compat patches in this pack let colonists eat modded meals, so your kitchens literally feed the empire."
 			]
 			icon: { id: "farmersdelight:cooking_pot" }
 			id: "0000000000000205"
@@ -80,9 +80,9 @@
 		{
 			dependencies: ["0000000000000204"]
 			description: [
-				"Build a &eRestaurant&r and staff it with a Cook. Feed it your automated food via its rack or the warehouse, and the colony's meals take care of themselves."
+				"Build a Restaurant and staff it with a Cook. Feed it your automated food via its rack or the warehouse, and the colony's meals take care of themselves."
 				""
-				"This is the loop this whole pack is about: &eCreate produces, MineColonies consumes.&r"
+				"This is the loop this whole pack is about: Create produces, MineColonies consumes."
 			]
 			icon: { id: "minecolonies:blockhutcook" }
 			id: "0000000000000206"
@@ -95,7 +95,7 @@
 		{
 			dependencies: ["0000000000000205", "0000000000000206"]
 			description: [
-				"A &eWarehouse&r plus &eCouriers&r form the colony's circulatory system. Everything your machines make should flow in; everything citizens need should flow out."
+				"A Warehouse plus Couriers form the colony's circulatory system. Everything your machines make should flow in; everything citizens need should flow out."
 			]
 			icon: { id: "minecolonies:blockhutwarehouse" }
 			id: "0000000000000207"
@@ -111,7 +111,7 @@
 		{
 			dependencies: ["0000000000000207"]
 			description: [
-				"&eBrass&r marks the second industrial age: smart machines, filters, and precision. Set up a Blaze Burner and mix yourself into the future."
+				"Brass marks the second industrial age: smart machines, filters, and precision. Set up a Blaze Burner and mix yourself into the future."
 			]
 			icon: { id: "create:brass_ingot" }
 			id: "0000000000000208"

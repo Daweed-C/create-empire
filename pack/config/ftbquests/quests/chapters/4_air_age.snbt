@@ -10,7 +10,7 @@
 	quests: [
 		{
 			description: [
-				"Rails conquer distance. &eAeronautics&r conquers terrain."
+				"Rails conquer distance. Aeronautics conquers terrain."
 				""
 				"Create: Aeronautics (with the Sable physics engine) lets you assemble genuine flying machines — lift, drag and propeller physics included. Read its in-game guide before you build; physics does not forgive optimists."
 			]
@@ -26,7 +26,7 @@
 		{
 			dependencies: ["0000000000000401"]
 			description: [
-				"Build and fly your &efirst airship&r. A simple balloon-and-propeller design is enough — it just has to take off, steer, and land somewhere you meant it to."
+				"Build and fly your first airship. A simple balloon-and-propeller design is enough — it just has to take off, steer, and land somewhere you meant it to."
 			]
 			icon: { id: "minecraft:white_wool" }
 			id: "0000000000000402"
@@ -39,7 +39,7 @@
 		{
 			dependencies: ["0000000000000402"]
 			description: [
-				"Found a colony somewhere &erails can't reasonably go&r — a mountaintop, an island, a mesa across the sea — and supply it by air."
+				"Found a colony somewhere rails can't reasonably go — a mountaintop, an island, a mesa across the sea — and supply it by air."
 			]
 			icon: { id: "minecolonies:blockhuttownhall" }
 			id: "0000000000000403"
@@ -52,7 +52,7 @@
 		{
 			dependencies: ["0000000000000403"]
 			description: [
-				"Raiders adapt. So should you. Fortify your empire with &eCreate Big Cannons&r artillery, guard towers on every approach, and — if you're feeling theatrical — an armed patrol airship."
+				"Raiders adapt. So should you. Fortify your empire with Create Big Cannons artillery, guard towers on every approach, and — if you're feeling theatrical — an armed patrol airship."
 			]
 			icon: { id: "minecraft:tnt" }
 			id: "0000000000000404"

@@ -10,9 +10,9 @@
 	quests: [
 		{
 			description: [
-				"One colony is a town. Two colonies with a &erailway&r between them is the beginning of an empire."
+				"One colony is a town. Two colonies with a railway between them is the beginning of an empire."
 				""
-				"Craft &ePrecision Mechanisms&r — the brass-age component that unlocks trains."
+				"Craft Precision Mechanisms — the brass-age component that unlocks trains."
 			]
 			icon: { id: "create:precision_mechanism" }
 			id: "0000000000000301"
@@ -26,7 +26,7 @@
 		{
 			dependencies: ["0000000000000301"]
 			description: [
-				"Lay your first &eTrain Track&r. Plan the route like a governor, not a miner — stations belong where colonies will grow, and Steam 'n' Rails adds everything from semaphores to custom bogeys to do it in style."
+				"Lay your first Train Track. Plan the route like a governor, not a miner — stations belong where colonies will grow, and Steam 'n' Rails adds everything from semaphores to custom bogeys to do it in style."
 			]
 			icon: { id: "create:track" }
 			id: "0000000000000302"
@@ -39,7 +39,7 @@
 		{
 			dependencies: ["0000000000000302"]
 			description: [
-				"Build a &eTrain Station&r, assemble a train on it, and give it a &eSchedule&r. Your first locomotive pulling out of the station is a moment worth a screenshot."
+				"Build a Train Station, assemble a train on it, and give it a Schedule. Your first locomotive pulling out of the station is a moment worth a screenshot."
 			]
 			icon: { id: "create:railway_casing" }
 			id: "0000000000000303"
@@ -55,7 +55,7 @@
 		{
 			dependencies: ["0000000000000303"]
 			description: [
-				"Found a &esecond colony&r beyond the horizon — new biome, new resources, new problems — and connect it to your capital by rail."
+				"Found a second colony beyond the horizon — new biome, new resources, new problems — and connect it to your capital by rail."
 				""
 				"This one can't be checked automatically: click complete when your second Town Hall stands and the line is running."
 			]
@@ -70,7 +70,7 @@
 		{
 			dependencies: ["0000000000000304"]
 			description: [
-				"Make the railway &eearn its keep&r: run a scheduled freight train that hauls goods between your colonies — grain east, ingots west."
+				"Make the railway earn its keep: run a scheduled freight train that hauls goods between your colonies — grain east, ingots west."
 				""
 				"Chest carriages + smart observers on the platforms make loading fully automatic."
 			]
