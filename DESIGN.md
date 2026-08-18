@@ -1,108 +1,92 @@
-# Create: Empire — Design Document
+# Create: Empire — Game Design Document
 
-## Fantasy
+*Concept locked with the Governor, 2026-08-18. Supersedes the original
+MineColonies-centered design. The Charter simulation spec lives in
+[`sources/charter/DESIGN.md`](sources/charter/DESIGN.md).*
 
-You found a hamlet, govern it, industrialise it with Create, and grow it into
-an empire of specialised colonies trading with each other over rail and air
-routes you built by hand. Minecraft stays Minecraft — the pack adds a
-*management* layer (MineColonies) and an *automation* layer (Create), and the
-game is the interplay between them.
+## The fantasy
 
-## Platform decision
+**You are the Governor-Engineer. The machines are your workforce; the
+people are your purpose.**
 
-**Minecraft 1.21.1 + NeoForge**, because:
+An engineering sandbox × colony sim hybrid: Anno 1800's demand economy
+running inside Minecraft's freedom, with Create as the production layer.
+Every contraption exists for someone — the mill feeds Greta and Bjorn, the
+night train keeps a mountain colony alive. Automation with a heartbeat.
 
-- **Create: Aeronautics only exists there** (released 2026 on the Sable
-  physics engine, 1.21.1 NeoForge). Aeronautics was a named requirement.
-- Create 6, MineColonies, Farmer's Delight, FTB Quests and the performance
-  stack are all first-class on 1.21.1 NeoForge.
-- Steam 'n' Rails has a maintained 1.21.1 NeoForge port.
-- The addon ecosystem's active development moved to NeoForge; 1.20.1 Forge
-  has a larger *legacy* addon pool but is frozen and lacks Aeronautics.
+## Design pillars
 
-Trade-off accepted: a few long-tail Create addons never left 1.20.1. The
-bootstrap script treats those as optional and reports them.
+Every addition must serve at least one pillar. Anything serving none is cut.
 
-## The three pillars
+1. **People are the purpose** — the Charter: named citizens with needs,
+   growth, homelessness, and death. The demand side of the economy.
+2. **Machines are the means** — Create supply chains answer the Charter's
+   demand curve. The supply side. One-way coupling, by decision: colonies
+   *consume* Create goods but never gate Create tech. Engineers are always
+   free to build; the sim provides purpose, not permission.
+3. **Distance is the challenge** — colonies specialize by geography; rails,
+   airships, and Create's package logistics bridge them. Nothing teleports.
+4. **It stays Minecraft** — vanilla visuals only, total building freedom,
+   guild boards instead of prescribed structures, bossbars and chat instead
+   of custom UI.
 
-### 1. Govern (MineColonies)
+## Core loops
 
-Town Hall, citizens with jobs/needs/happiness, builders that construct from
-schematics, guards, raids, research. Two known objections, both solved in the
-data layer:
+- **Minute**: build and engineer — Create contraptions, houses, rails.
+- **Hour**: keep the cycle fed — respond to demand, register buildings,
+  handle events (a family arrives, a raid brews, a larder runs dry).
+- **Session**: promote a colony tier, open a trade route, found a colony.
+- **Campaign**: the three acts below, ending in Coronation.
 
-- **"Citizens can't eat modded food"** → the *MineColonies Compatibility*
-  addon plus the *MineColonies/Farmer's Delight compat patch* datapack
-  register modded foods and fix food-tier rejection. Our own
-  `create-empire-compat` datapack is the extension point for anything they
-  miss.
-- **"Structures aren't vanilla-friendly"** → building styles are pure
-  schematic packs. We ship extra styles (Stylecolonies) and, crucially, the
-  **scan tool** workflow: build your own vanilla-style structures, scan them,
-  and the colony uses *your* architecture.
+## Three acts
 
-Raid difficulty is tuned up in `defaultconfigs/minecolonies-server.toml` so
-the defense pillar (guard towers, walls, Create Big Cannons) is load-bearing.
+- **Act I — The Homestead.** Found a charter, feed Settlers with farms and
+  a water wheel. Intimacy: a dozen named villagers you know personally.
+- **Act II — The Industry.** Brass age. Citizens and Burghers demand
+  manufactured goods; the first railway; the second colony. The management
+  plate starts spinning.
+- **Act III — The Empire.** An Industrialist capital, specialized satellite
+  colonies, air links to impossible places, wealth-scaled raids — and the
+  **Coronation**: a scripted celebration event when the empire criteria are
+  met (Tier IV capital, satellite colonies at Tier II+, trade active).
+  Fireworks, titles, the quest book's final page. Play continues after.
 
-### 2. Industrialise (Create 6 + addons)
+## Difficulty
 
-Standard Create progression (andesite → brass) reframed as civic
-infrastructure: the water wheel is the town mill, the press is the town
-forge, Farmer's Delight + kitchen addons make food automation a real
-discipline. The colony consumes what the machines produce (via warehouse and
-restaurant), closing the loop.
+One tuned, authored experience (starvation is real, raids scale with
+wealth, homelessness bites). All balance constants sit at the top of
+`charter.js`, editable by anyone who wants a different game.
 
-### 3. Connect (trains, airships, packages)
+## The stack
 
-Create 6's logistics network (Packagers, Stock Tickers, package items) is the
-trade mechanic; Steam 'n' Rails trains and Aeronautics airships are the
-transport mechanic. Colonies specialise, surpluses move physically. Nothing
-teleports.
-
-## Progression (FTB Quests, 5 chapters)
-
-| Chapter | Theme | Gate |
-| --- | --- | --- |
-| I · The Hamlet | Found colony, first huts, first guard tower | MineColonies basics |
-| II · Foundry & Fields | Water wheel → press → automated kitchen feeding the restaurant | Andesite + food loop |
-| III · The Rail Age | Precision mechanisms, first railway, second colony, freight line | Brass + trains |
-| IV · The Air Age | First airship, remote sky-harbor colony, defended empire | Aeronautics |
-| V · The Empire | Packager/Stock Ticker trade network, university, five colonies | Create 6 logistics |
-
-Quests use item-detection tasks where item ids are certain and checkmark
-tasks for milestone achievements (e.g. "second colony connected by rail")
-that no task type can detect.
-
-## Mod list
-
-The authoritative list is `scripts/bootstrap.sh` (required vs optional, with
-fallback slugs). Summary:
-
-- **Core**: Create, Steam 'n' Rails (NeoForge port), Aeronautics (+Sable),
-  MineColonies (+Structurize stack)
-- **Compat**: MineColonies Compatibility, MCFD compat datapack, Paxi,
-  create-empire-compat (bundled)
-- **Create addons (optional tier)**: Big Cannons, Connected, Copycats+,
-  Structures, Bells & Whistles, Enchantment Industry, Diesel Generators,
-  Blocks & Bogies, Central Kitchen, Slice & Dice
-- **Food**: Farmer's Delight
-- **Quests**: FTB Quests / Teams / Library
-- **QoL**: JEI, Jade, JourneyMap, AppleSkin, Mouse Tweaks, Sophisticated
-  Backpacks/Storage
-- **Performance**: Sodium, FerriteCore, Lithium, ModernFix, Entity Culling,
-  ImmediatelyFast, Iris
-- **Worldgen/threat**: Terralith, Towns & Towers, YUNG's structures, Guard
-  Villagers
+- **Simulation**: the Charter (KubeJS) — sole colony system.
+  **MineColonies is retired as of Charter v0.3** (decision 2026-08-18):
+  removed from the manifest along with its compat addons and style packs,
+  quests rewritten around the Charter. Structurize-based tools go with it;
+  building delivery is Create's Schematicannon + shipped blueprints.
+- **Production**: Create 6 + addons (Steam 'n' Rails, Aeronautics, Big
+  Cannons, Connected, kitchen/deco addons), Farmer's Delight.
+- **World**: CTOV + Towns & Towers + Terralith + YUNG's — vanilla-plus
+  places worth settling; generated houses are legitimate scanning stock for
+  personal use (license-check anything shipped).
+- **Guidance**: FTB Quests — five chapters retelling the three acts.
+- **Foundation**: NeoForge 1.21.1, packwiz repo, CI-verified builds,
+  auto-sync via packwiz-installer. Server-side sim = multiplayer-ready.
 
 ## Roadmap
 
-- **v0.2** — in-game smoke test: verify quest item ids, MineColonies config
-  keys, Flywheel/Sodium interplay; pin exact mod versions in packwiz metadata
-  and commit them for reproducible builds.
-- **v0.3** — recipe gating: advanced hut blocks require Create industrial
-  goods (brass, precision mechanisms) via verified `data/minecolonies/recipe/`
-  overrides; expand the compat datapack with Create food registrations.
-- **v0.4** — custom vanilla-style MineColonies style pack ("Empire" style)
-  built with the scan tool; ship as a Structurize style pack.
-- **v1.0** — full quest pass (rewards economy, reward tables), balancing,
-  server files, pack publishing on Modrinth/CurseForge.
+| Version | Content |
+| --- | --- |
+| v0.2 ✅ | Charter demographics: guild boards, housing/homelessness, named citizens, starvation, migration |
+| v0.3 | Services (Workshop/School/Market/Guard), tier matrix + promotion tokens, taxes; **MineColonies removed**; quest chapters I–II rewritten |
+| v0.4 | Raid meter, festivals, `/charter ledger`, colony specialization; quests III–V rewritten; first shipped prebuild schematics |
+| v1.0 | Coronation event, balance pass from real playthroughs, Empire style pack v1, merge to main, public release |
+
+## Cut list (deliberate non-goals)
+
+- Individual villager labor AI (Manor Lords' visible workers) — vanilla
+  villager ambience + possible Recruits/Workers mods if 1.21.1 ports land.
+- Custom textures/models of any kind.
+- Two-way tech gating, difficulty presets, seasons — revisit only after v1.0.
+- A Java mod — only if the Charter outgrows scripting, and then as a port
+  of a proven design, not a rewrite of an unproven one.

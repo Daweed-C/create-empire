@@ -86,10 +86,13 @@ bells, chat events to nearby players).
 - **v0.2** ✅ (this build) guild-sign Houses + housing capacity + homelessness,
   named citizens, starvation deaths, immigration/emigration, richer events.
 - **v0.3** Workshops/School/Market/Guard services, tier matrix + promotion
-  tokens, taxes, employment.
+  tokens, taxes, employment. **MineColonies removed from the pack** (concept
+  decision 2026-08-18 — the Charter is the sole colony system); quest
+  chapters I–II rewritten around the Charter.
 - **v0.4** Raid meter, festivals, `/charter ledger`, colony specialization,
-  quest chapters rewritten around the Charter (MineColonies references
-  retired), first shipped prebuild schematics.
+  quest chapters III–V rewritten, first shipped prebuild schematics.
+- **v1.0** Coronation win event (Tier IV capital + satellite colonies at
+  Tier II+ + active trade → scripted celebration), balance pass.
 - **vNext** Port to a real NeoForge addon if the loop outgrows scripting.
 
 ## Files

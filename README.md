@@ -1,21 +1,26 @@
 # Create: Empire
 
-A Minecraft **1.21.1 (NeoForge)** modpack about founding a village, becoming its
-governor, industrialising it with **Create**, and growing it into an empire of
-colonies connected by **trains** and **airships**.
+A Minecraft **1.21.1 (NeoForge)** modpack where **you are the
+Governor-Engineer: the machines are your workforce, the people are your
+purpose.** An engineering sandbox × colony sim hybrid — Anno 1800's demand
+economy running inside Minecraft's freedom, with Create as the production
+layer. See [DESIGN.md](DESIGN.md) for the full concept.
 
-- **Govern** — [MineColonies](https://minecolonies.com): claim land, recruit
-  citizens, assign jobs, keep them fed and safe, survive raids.
+- **Govern** — **The Charter**, this pack's own simulation over vanilla
+  villagers: named citizens with needs, housing and homelessness, guild-board
+  building registration, growth, migration — and starvation, if you fail
+  them.
 - **Industrialise** — [Create 6](https://modrinth.com/mod/create) + addons:
-  automate food, materials and logistics with rotational machinery.
+  your supply chains answer the colony's demand curve.
 - **Connect** — Steam 'n' Rails trains and **Create: Aeronautics** airships
-  carry Create 6 logistics packages between your colonies: physical trade
-  routes, not magic item teleportation.
+  carry goods between specialized colonies: physical trade routes, not magic
+  item teleportation.
 
-A five-chapter FTB Quests line (Hamlet → Foundry & Fields → Rail Age → Air Age
-→ Empire) teaches the loop. Vanilla-friendly throughout: no magic tech, no HUD
-clutter, and MineColonies' scan tool lets you use your **own vanilla-style
-buildings** as colony schematics.
+A five-chapter FTB Quests line retells the three acts (Homestead → Industry
+→ Empire, ending in Coronation). Vanilla-friendly throughout: vanilla
+visuals only, total building freedom, no custom UI. (MineColonies currently
+ships as transitional content and retires in v0.3 — the Charter is the
+pack's colony system.)
 
 ## Getting the pack
 
