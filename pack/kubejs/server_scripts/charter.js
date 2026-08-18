@@ -1,5 +1,5 @@
 // ============================================================
-// Create: Empire — The Charter (colony simulation) v0.1
+// Create: Empire — The Charter (colony simulation) v0.1.1
 // Design: sources/charter/DESIGN.md
 //
 // Found a colony: place a Bell on top of a Barrel, then sneak +
@@ -7,154 +7,176 @@
 // depot — keep it stocked with simple food (Create can feed it via
 // funnels/chutes/trains). A bossbar near the bell shows colony state.
 //
-// EXPERIMENTAL: v0.1 simulates Tier I (Settlers) only. Errors are
-// logged to logs/kubejs/server.log — report them, don't suffer them.
+// Written in deliberately conservative JS: KubeJS runs on the Rhino
+// engine, which rejects some modern syntax (destructuring broke v0.1).
+// Errors are logged to logs/kubejs/server.log with a [charter] prefix.
 // ============================================================
 
 // ---- balance constants (tune freely) ----
-const CYCLE_TICKS = 1000;        // one sim step per in-game hour (~50s)
-const RADIUS = 48;               // colony radius around the bell
-const FOOD_PER_CAPITA = 0.5;     // items eaten per villager per step
-const HAPPY_GAIN = 4;            // happiness per fully-fed step
-const HAPPY_LOSS = 7;            // happiness lost per underfed step
-const THRIVE_AT = 70;            // >= this: growth + celebration
-const STRUGGLE_AT = 40;          // < this: decline + tolling bell
-const GROWTH_CHANCE = 0.35;      // per thriving step, if below pop cap
-const POP_CAP = 20;              // v0.1 hard cap on spawned growth
-const SIMPLE_FOOD = [
+var CYCLE_TICKS = 1000;        // one sim step per in-game hour (~50s)
+var RADIUS = 48;               // colony radius around the bell
+var FOOD_PER_CAPITA = 0.5;     // items eaten per villager per step
+var HAPPY_GAIN = 4;            // happiness per fully-fed step
+var HAPPY_LOSS = 7;            // happiness lost per underfed step
+var THRIVE_AT = 70;            // >= this: growth + celebration
+var STRUGGLE_AT = 40;          // < this: decline + tolling bell
+var GROWTH_CHANCE = 0.35;      // per thriving step, if below pop cap
+var POP_CAP = 20;              // v0.1 hard cap on spawned growth
+var SIMPLE_FOOD = [
   'minecraft:bread', 'minecraft:baked_potato', 'minecraft:carrot',
   'minecraft:cooked_beef', 'minecraft:cooked_porkchop', 'minecraft:cooked_chicken',
   'minecraft:cooked_mutton', 'minecraft:cooked_cod', 'minecraft:cooked_salmon',
   'minecraft:beetroot_soup', 'minecraft:pumpkin_pie'
 ];
 
-let tickCounter = 0;
+var tickCounter = 0;
 
-function charterKey(i) { return 'charter_' + i }
+// persistentData layout (flat primitives only — Rhino-safe):
+//   charterCount: int
+//   c<i>_x, c<i>_y, c<i>_z: int   c<i>_dim, c<i>_name: string   c<i>_hap: int
 
-function getCharterCount(data) {
-  return data.contains('charterCount') ? data.getInt('charterCount') : 0
+function getCount(data) {
+  return data.contains('charterCount') ? data.getInt('charterCount') : 0;
 }
 
 // ---- founding: sneak + right-click a bell with an emerald ----
-BlockEvents.rightClicked('minecraft:bell', event => {
+BlockEvents.rightClicked('minecraft:bell', function (event) {
   try {
-    const { player, block, item, level } = event
-    if (!player || !player.isCrouching()) return
-    if (item.id !== 'minecraft:emerald') return
-    if (block.down.id !== 'minecraft:barrel') {
-      player.tell(Text.red('The town charter needs a Barrel (tribute depot) directly under the Bell.'))
-      return
+    var player = event.getPlayer();
+    var block = event.getBlock();
+    if (!player || !player.isCrouching()) return;
+    if (String(event.getItem().getId()) !== 'minecraft:emerald') return;
+
+    var level = event.getLevel();
+    var x = block.getPos().getX(), y = block.getPos().getY(), z = block.getPos().getZ();
+    var below = level.getBlock(x, y - 1, z);
+    if (String(below.getId()) !== 'minecraft:barrel') {
+      player.tell(Text.red('The town charter needs a Barrel (tribute depot) directly under the Bell.'));
+      return;
     }
-    const data = event.server.persistentData
-    const count = getCharterCount(data)
-    // refuse duplicate charters on the same bell
-    for (let i = 0; i < count; i++) {
-      const t = data.getCompound(charterKey(i))
-      if (t.getInt('x') === block.pos.x && t.getInt('y') === block.pos.y && t.getInt('z') === block.pos.z) {
-        player.tell(Text.yellow('This settlement already has a charter.'))
-        return
+
+    var data = event.getServer().getPersistentData();
+    var count = getCount(data);
+    for (var i = 0; i < count; i++) {
+      if (data.getInt('c' + i + '_x') === x && data.getInt('c' + i + '_y') === y && data.getInt('c' + i + '_z') === z) {
+        player.tell(Text.yellow('This settlement already has a charter.'));
+        return;
       }
     }
-    const name = 'Colony ' + (count + 1)
-    const tag = new $CompoundTag()
-    tag.putInt('x', block.pos.x); tag.putInt('y', block.pos.y); tag.putInt('z', block.pos.z)
-    tag.putString('dim', level.dimension.toString())
-    tag.putString('name', name)
-    tag.putInt('happiness', 50)
-    data.put(charterKey(count), tag)
-    data.putInt('charterCount', count + 1)
-    item.count-- // the emerald seals the charter
-    event.server.runCommandSilent(`bossbar add charter:c${count} "${name}"`)
-    player.tell(Text.green(`The charter of ${name} is sealed! Keep the tribute barrel stocked with simple food.`))
-    event.server.runCommandSilent(`execute in ${level.dimension} positioned ${block.pos.x} ${block.pos.y} ${block.pos.z} run particle minecraft:happy_villager ~ ~1 ~ 1.5 1.5 1.5 0.05 60`)
+
+    var name = 'Colony ' + (count + 1);
+    data.putInt('c' + count + '_x', x);
+    data.putInt('c' + count + '_y', y);
+    data.putInt('c' + count + '_z', z);
+    data.putString('c' + count + '_dim', String(level.getDimension()));
+    data.putString('c' + count + '_name', name);
+    data.putInt('c' + count + '_hap', 50);
+    data.putInt('charterCount', count + 1);
+
+    try { player.getMainHandItem().shrink(1); } catch (e1) { /* the emerald survives; charters are cheap today */ }
+
+    event.getServer().runCommandSilent('bossbar add charter:c' + count + ' "' + name + '"');
+    event.getServer().runCommandSilent('execute in ' + String(level.getDimension()) + ' positioned ' + x + ' ' + y + ' ' + z + ' run particle minecraft:happy_villager ~ ~1 ~ 1.5 1.5 1.5 0.05 60');
+    player.tell(Text.green('The charter of ' + name + ' is sealed! Keep the tribute barrel stocked with simple food.'));
   } catch (err) {
-    console.error('[charter] founding failed: ' + err)
+    console.error('[charter] founding failed: ' + err);
   }
-})
+});
 
 // ---- the simulation cycle ----
-ServerEvents.tick(event => {
-  tickCounter++
-  if (tickCounter % CYCLE_TICKS !== 0) return
-  const server = event.server
-  const data = server.persistentData
-  const count = getCharterCount(data)
-  for (let i = 0; i < count; i++) {
+ServerEvents.tick(function (event) {
+  tickCounter++;
+  if (tickCounter % CYCLE_TICKS !== 0) return;
+  var server = event.getServer();
+  var data = server.getPersistentData();
+  var count = getCount(data);
+  for (var i = 0; i < count; i++) {
     try {
-      simStep(server, data, i)
+      simStep(server, data, i);
     } catch (err) {
-      console.error('[charter] sim step failed for colony ' + i + ': ' + err)
+      console.error('[charter] sim step failed for colony ' + i + ': ' + err);
     }
   }
-})
+});
 
 function simStep(server, data, i) {
-  const tag = data.getCompound(charterKey(i))
-  const level = server.getLevel(tag.getString('dim'))
-  if (!level) return
-  const x = tag.getInt('x'), y = tag.getInt('y'), z = tag.getInt('z')
-  const bell = level.getBlock(x, y, z)
-  if (bell.id !== 'minecraft:bell') return // town center destroyed; colony dormant
+  var dim = data.getString('c' + i + '_dim');
+  var level = server.getLevel(dim);
+  if (!level) return;
+  var x = data.getInt('c' + i + '_x');
+  var y = data.getInt('c' + i + '_y');
+  var z = data.getInt('c' + i + '_z');
+  var bell = level.getBlock(x, y, z);
+  if (String(bell.getId()) !== 'minecraft:bell') return; // town center destroyed; colony dormant
 
-  // census
-  const villagers = level.getEntitiesWithin(AABB.of(x - RADIUS, y - 16, z - RADIUS, x + RADIUS, y + 32, z + RADIUS))
-    .filter(e => String(e.type) === 'minecraft:villager')
-  const pop = villagers.length
+  // census — collect villagers into a plain JS array
+  var villagers = [];
+  var found = level.getEntitiesWithin(AABB.of(x - RADIUS, y - 16, z - RADIUS, x + RADIUS, y + 32, z + RADIUS));
+  found.forEach(function (e) {
+    if (String(e.getType()) === 'minecraft:villager') villagers.push(e);
+  });
+  var pop = villagers.length;
 
   // consumption from the tribute barrel
-  const demand = Math.max(1, Math.ceil(pop * FOOD_PER_CAPITA))
-  const eaten = pop > 0 ? consumeFood(bell.down, demand) : 0
-  const fed = pop === 0 ? false : eaten >= demand
+  var demand = Math.max(1, Math.ceil(pop * FOOD_PER_CAPITA));
+  var eaten = pop > 0 ? consumeFood(level.getBlock(x, y - 1, z), demand) : 0;
+  var fed = pop > 0 && eaten >= demand;
 
   // happiness
-  let happiness = tag.getInt('happiness')
-  happiness = fed ? Math.min(100, happiness + HAPPY_GAIN) : Math.max(0, happiness - HAPPY_LOSS)
-  tag.putInt('happiness', happiness)
-  data.put(charterKey(i), tag)
+  var happiness = data.getInt('c' + i + '_hap');
+  happiness = fed ? Math.min(100, happiness + HAPPY_GAIN) : Math.max(0, happiness - HAPPY_LOSS);
+  data.putInt('c' + i + '_hap', happiness);
 
   // outcomes
-  const dim = tag.getString('dim')
-  const at = `execute in ${dim} positioned ${x} ${y} ${z} run`
+  var at = 'execute in ' + dim + ' positioned ' + x + ' ' + y + ' ' + z + ' run ';
   if (pop > 0 && happiness >= THRIVE_AT) {
-    server.runCommandSilent(`${at} particle minecraft:happy_villager ~ ~1 ~ 3 2 3 0.05 ${10 + pop}`)
+    server.runCommandSilent(at + 'particle minecraft:happy_villager ~ ~1 ~ 3 2 3 0.05 ' + (10 + pop));
     if (pop < POP_CAP && Math.random() < GROWTH_CHANCE) {
-      const spot = bell.offset(1, 1, 1)
-      const settler = spot.createEntity('minecraft:villager')
-      if (settler) { settler.spawn() }
-      server.runCommandSilent(`${at} playsound minecraft:entity.villager.celebrate neutral @a[distance=..${RADIUS}] ~ ~ ~ 1 1`)
+      try {
+        var settler = level.getBlock(x + 1, y, z + 1).createEntity('minecraft:villager');
+        if (settler) settler.spawn();
+        server.runCommandSilent(at + 'playsound minecraft:entity.villager.celebrate neutral @a[distance=..' + RADIUS + '] ~ ~ ~ 1 1');
+      } catch (e2) {
+        console.error('[charter] growth spawn failed: ' + e2);
+      }
     }
   } else if (happiness < STRUGGLE_AT) {
-    server.runCommandSilent(`${at} particle minecraft:angry_villager ~ ~1 ~ 3 2 3 0.05 ${5 + pop}`)
-    server.runCommandSilent(`${at} playsound minecraft:block.bell.use block @a[distance=..${RADIUS * 2}] ~ ~ ~ 1 0.6`)
+    server.runCommandSilent(at + 'particle minecraft:angry_villager ~ ~1 ~ 3 2 3 0.05 ' + (5 + pop));
+    server.runCommandSilent(at + 'playsound minecraft:block.bell.use block @a[distance=..' + (RADIUS * 2) + '] ~ ~ ~ 1 0.6');
     if (pop > 2 && Math.random() < 0.25) {
-      // emigration: the unhappiest walk away (despawn one villager)
-      villagers[0].discard()
-      server.runCommandSilent(`${at} playsound minecraft:entity.villager.no neutral @a[distance=..${RADIUS}] ~ ~ ~ 1 0.8`)
+      try {
+        villagers[0].discard(); // emigration: the unhappiest walk away
+        server.runCommandSilent(at + 'playsound minecraft:entity.villager.no neutral @a[distance=..' + RADIUS + '] ~ ~ ~ 1 0.8');
+      } catch (e3) {
+        console.error('[charter] emigration failed: ' + e3);
+      }
     }
   }
 
   // bossbar for players near the colony
-  const name = tag.getString('name')
-  const mood = happiness >= THRIVE_AT ? 'Thriving' : (happiness < STRUGGLE_AT ? 'Struggling' : 'Content')
-  server.runCommandSilent(`bossbar set charter:c${i} name "${name} — Settlers: ${pop} — ${mood}"`)
-  server.runCommandSilent(`bossbar set charter:c${i} max 100`)
-  server.runCommandSilent(`bossbar set charter:c${i} value ${happiness}`)
-  server.runCommandSilent(`bossbar set charter:c${i} color ${happiness >= THRIVE_AT ? 'green' : (happiness < STRUGGLE_AT ? 'red' : 'yellow')}`)
-  server.runCommandSilent(`${at} bossbar set charter:c${i} players @a[distance=..${RADIUS + 16}]`)
+  var name = data.getString('c' + i + '_name');
+  var mood = happiness >= THRIVE_AT ? 'Thriving' : (happiness < STRUGGLE_AT ? 'Struggling' : 'Content');
+  var color = happiness >= THRIVE_AT ? 'green' : (happiness < STRUGGLE_AT ? 'red' : 'yellow');
+  server.runCommandSilent('bossbar add charter:c' + i + ' "' + name + '"'); // no-op if it exists
+  server.runCommandSilent('bossbar set charter:c' + i + ' name "' + name + ' — Settlers: ' + pop + ' — ' + mood + '"');
+  server.runCommandSilent('bossbar set charter:c' + i + ' max 100');
+  server.runCommandSilent('bossbar set charter:c' + i + ' value ' + happiness);
+  server.runCommandSilent('bossbar set charter:c' + i + ' color ' + color);
+  server.runCommandSilent(at + 'bossbar set charter:c' + i + ' players @a[distance=..' + (RADIUS + 16) + ']');
 }
 
 function consumeFood(barrel, demand) {
-  const inv = barrel.inventory
-  if (!inv) return 0
-  let eaten = 0
-  for (let slot = 0; slot < inv.slots && eaten < demand; slot++) {
-    const stack = inv.getStackInSlot(slot)
-    if (stack.empty) continue
-    if (SIMPLE_FOOD.indexOf(String(stack.id)) < 0) continue
-    const take = Math.min(demand - eaten, stack.count)
-    inv.extractItem(slot, take, false)
-    eaten += take
+  var inv = barrel.getInventory();
+  if (!inv) return 0;
+  var eaten = 0;
+  var slots = inv.getSlots();
+  for (var slot = 0; slot < slots && eaten < demand; slot++) {
+    var stack = inv.getStackInSlot(slot);
+    if (stack.isEmpty()) continue;
+    if (SIMPLE_FOOD.indexOf(String(stack.getId())) < 0) continue;
+    var take = Math.min(demand - eaten, stack.getCount());
+    inv.extractItem(slot, take, false);
+    eaten += take;
   }
-  return eaten
+  return eaten;
 }
