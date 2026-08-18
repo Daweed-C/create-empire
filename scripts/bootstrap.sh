@@ -41,7 +41,7 @@ failures_required=0
 # kotlin-for-forge: Slice & Dice. minecolonies-tweaks: MineColonies
 # Compatibility. create-dragons-plus: Central Kitchen + Enchantment Industry.
 # (All three confirmed by in-game dependency errors after being pruned.)
-KNOWN_DEPS="structurize blockui domum-ornamentum multi-piston sable sophisticated-core yungs-api architectury-api rpl cristel-lib flywheel ponder kotlin-for-forge minecolonies-tweaks create-dragons-plus"
+KNOWN_DEPS="structurize blockui domum-ornamentum multi-piston sable sophisticated-core yungs-api architectury-api rpl cristel-lib flywheel ponder kotlin-for-forge minecolonies-tweaks create-dragons-plus rhino architectury"
 
 ALLOWED=""
 REQ_CHECKS=()
@@ -122,6 +122,9 @@ opt cf "stylecolonies"                   "Stylecolonies (extra building style pa
 # blocks .mrpack export. Manual install only — see README "Optional manual
 # add-ons". Do not re-add here.
 opt cf "cftx:minecolonies-vanillafied"   "MineColonies Vanillafied (vanilla-look retexture, resource pack)"
+
+echo "== Simulation =="
+req mr "kubejs"                          "KubeJS (runs the Charter colony simulation)"
 
 echo "== Quests =="
 # FTB publishes on CurseForge, not Modrinth. Resolved by numeric project ID
