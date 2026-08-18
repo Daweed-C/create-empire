@@ -61,6 +61,29 @@ from the colony name pool. Events are personal: "Greta has joined Colony 1",
 "Bjorn has starved." Names live on the entity itself, so they survive
 restarts and travel with the villager.
 
+## 3b. The Work System (v0.3 — deterministic labor)
+
+Production is ledger-driven, Frostpunk/Anno-style: no vanilla randomness.
+
+- **Production boards**: `Farm`, `Pasture`, `Woodlot` (later Mine/Quarry)
+  registered like houses. Each needs a **physical prerequisite** near its
+  board — farmland blocks, penned animals, logs — which sets its **rating**,
+  and an **output container** (chest/barrel by the board) where goods appear
+  each cycle. Create funnels/trains collect from it like any inventory.
+- **Deterministic yield**: `output = base × assigned families × rating`.
+  Two farms with two farmer families each ⇒ known wheat per cycle, always.
+- **Assignment**: unemployed citizens are auto-assigned to workplaces
+  (nearest-first, families of 2). The ledger names them: "Greta and Bjorn
+  work the North Farm." Job-site blocks make villagers loiter plausibly at
+  their workplace — vanilla ambience as theater over ledger truth.
+- **Mechanization**: powered Create kinetic blocks detected at a workplace
+  reduce its family requirement / raise its yield. Freed families staff
+  service buildings (School/Market/Guard) — the tier ladder's real cost.
+  The empire arc: manual farming villages → machine-fed society where
+  citizens teach, trade and govern.
+- **Idleness matters**: citizens without workplace assignment or service
+  role drag happiness — every head needs a bed *and a purpose*.
+
 ## 4. Needs & tiers (unchanged from v1, phased in v0.3)
 
 Tier ladder Settlers → Citizens → Burghers → Industrialists; each tier

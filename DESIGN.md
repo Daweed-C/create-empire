@@ -24,6 +24,10 @@ Every addition must serve at least one pillar. Anything serving none is cut.
    demand curve. The supply side. One-way coupling, by decision: colonies
    *consume* Create goods but never gate Create tech. Engineers are always
    free to build; the sim provides purpose, not permission.
+   **Labor is deterministic** (decision 2026-08-18): production buildings
+   yield by ledger math — workers × building rating, no vanilla randomness.
+   Mechanizing a workplace with Create frees families for service roles;
+   the empire's arc is manual labor → machine-fed society.
 3. **Distance is the challenge** — colonies specialize by geography; rails,
    airships, and Create's package logistics bridge them. Nothing teleports.
 4. **It stays Minecraft** — vanilla visuals only, total building freedom,
@@ -78,14 +82,17 @@ wealth, homelessness bites). All balance constants sit at the top of
 | Version | Content |
 | --- | --- |
 | v0.2 ✅ | Charter demographics: guild boards, housing/homelessness, named citizens, starvation, migration |
-| v0.3 | Services (Workshop/School/Market/Guard), tier matrix + promotion tokens, taxes; **MineColonies removed**; quest chapters I–II rewritten |
+| v0.3 | **The Work System**: Farm/Pasture/Woodlot production boards with deterministic ledger yield into physical output chests, automatic family assignment, Create-mechanization bonus; services (School/Market/Guard), tier matrix + promotion tokens, taxes; **MineColonies removed**; quest chapters I–II rewritten |
 | v0.4 | Raid meter, festivals, `/charter ledger`, colony specialization; quests III–V rewritten; first shipped prebuild schematics |
 | v1.0 | Coronation event, balance pass from real playthroughs, Empire style pack v1, merge to main, public release |
 
 ## Cut list (deliberate non-goals)
 
-- Individual villager labor AI (Manor Lords' visible workers) — vanilla
-  villager ambience + possible Recruits/Workers mods if 1.21.1 ports land.
+- Individual villager labor *animation* (watching a worker physically till
+  and haul, Manor Lords-style). The labor *simulation* is in — deterministic
+  workforce ledger, assignments, output — while vanilla villager ambience
+  (professions at job sites) provides the theater. Animation is the Java-mod
+  frontier, crossed only for a proven economy.
 - Custom textures/models of any kind.
 - Two-way tech gating, difficulty presets, seasons — revisit only after v1.0.
 - A Java mod — only if the Charter outgrows scripting, and then as a port
