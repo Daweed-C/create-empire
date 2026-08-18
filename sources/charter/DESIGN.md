@@ -1,102 +1,99 @@
-# The Charter — colony simulation for Create: Empire
+# The Charter — colony simulation for Create: Empire (design v2)
 
-A demand-side economy simulation over vanilla villagers, in the spirit of
-Anno 1800 and Manor Lords: tiered populations with escalating consumption
-needs. Create factories are the supply side; the Charter is the demand side.
-No custom blocks, no custom entities, no textures — vanilla visuals only
-(villagers, bells, barrels, bossbars). Implemented in KubeJS (JavaScript)
-shipped inside the pack.
+A demand-side economy and demographics simulation over vanilla villagers, in
+the spirit of Anno 1800 and Manor Lords. Create factories are the supply
+side; the Charter is the demand side. Vanilla visuals only. Implemented in
+KubeJS (Rhino-safe JS) shipped inside the pack.
 
-## Why demand simulation is the right cut
+Decisions locked with the Governor (2026-08-18): realistic housing with
+homelessness · guild-sign building registration · structure/service needs ·
+full stakes (decline, raids, AND starvation deaths) · named citizens.
 
-Anno's magic loop: population tiers consume goods → higher tiers demand
-manufactured goods → you build supply chains to promote them → promotion
-raises consumption and unlocks new tech. In our pack the supply chains are
-**Create contraptions the player physically builds** — strictly better than
-Anno's abstract production buildings. The sim only needs to generate demand,
-verify supply, and translate the result into visible colony life.
+## 1. Buildings: the Guild Board system
 
-## Core objects
+The player builds (or prints) **anything, anywhere, freely**. A building
+becomes real to the simulation when the Governor hangs a **sign on it and
+registers it**: sneak + right-click the sign holding **Paper** (the deed).
+The sign's first line declares the function — like the painted boards of
+old taverns and merchant guilds:
 
-- **Charter**: a vanilla **Bell placed on top of a Barrel**, registered by
-  sneak + right-clicking the bell with an emerald. The bell is the town
-  center (vanilla raids already ring bells); the barrel is the **tribute
-  depot** — the inventory the colony eats from. Create can fill it (chutes,
-  funnels, trains) like any inventory: that's the whole integration.
-- **Population**: villagers within the charter radius (48 blocks). Counted,
-  not owned — housing/breeding stays pure vanilla.
-- **Happiness** (0–100 per colony): rises when the last cycle's needs were
-  met, falls when they weren't.
-- **Tier** (per colony, like Anno's population classes — themed to the
-  pack's tech ages):
+| Sign says (1st line contains) | Building | Simulation effect |
+| --- | --- | --- |
+| `House` / `Home` | Dwelling | Adds housing capacity = beds found near the sign (max 4 per house) |
+| `Workshop` | Workplace | (v0.3) employment: villagers with professions near workshops earn taxes |
+| `School` | Service | (v0.3) required for Tier III; educates faster promotion |
+| `Guard` | Service | (v0.3) reduces raid damage odds; wants an iron golem or armed stand nearby |
+| `Market` | Service | (v0.3) required for Tier II+; wants item frames / trade stalls nearby |
 
-| Tier | Name | Needs (consumed per capita per cycle) | Supply chain implied |
-| --- | --- | --- | --- |
-| I | Settlers | simple food (bread, baked potato, cooked meats) | vanilla farming |
-| II | Citizens | + varied meals (Farmer's Delight cooked dishes), + wool | FD kitchen, sheep |
-| III | Burghers | + paper goods (paper/books), + building materials (bricks/stone) | Create presses, mills |
-| IV | Industrialists | + luxuries (Create chocolate, cake), + clockworks (vanilla clocks/spyglasses) | full brass-age automation |
+Registration is per-colony (nearest charter bell). Destroyed signs silently
+retire the building. The sign IS the building's soul — renovate freely
+behind it.
 
-Each tier consumes its own needs **plus all lower tiers'** (Anno rule).
-Higher tiers = more demanding, richer taxes, better bonuses.
+**Prebuilds** need no separate system: the pack ships **Create schematic
+files** (`schematics/*.nbt`). Governor workflow: Schematic Table → print the
+blueprint → Schematicannon + materials builds it → hang the board → done.
+Hand-built and cannon-built structures are indistinguishable to the sim, by
+design. Prebuild library grows the same way as the Empire style: the
+Governor saves a design with Create's Schematic & Quill and sends the .nbt
+for inclusion in the pack.
 
-## The cycle
+## 2. Demographics (realistic, per colony)
 
-Every sim step (default: 1 in-game hour ≈ 50s real time):
+- **Housing capacity** = Σ beds of registered Houses (each capped at 4).
+  The charter itself grants +2 (tents around the town bell).
+- **Homelessness**: population above capacity is homeless. Homeless citizens
+  generate unhappiness (per head), pay no taxes (v0.3), emigrate first, and
+  are the first victims of raids/winter events (later).
+- **Growth (births)**: only when fed AND free housing exists AND happiness
+  is Thriving. One birth at a time.
+- **Immigration**: a thriving colony with ≥2 free beds occasionally attracts
+  a family (2 arrivals) — prosperity pulls people in even faster than
+  births.
+- **Emigration**: struggling colonies lose citizens (homeless first).
+- **Starvation deaths**: consecutive fully-unfed cycles raise a hunger
+  counter; past the threshold, citizens begin to die — by name, with a
+  tolling bell. Recovery resets the counter. Manor Lords winter-dread: real.
 
-1. Count population; compute demand per need from tier + population.
-2. Withdraw goods from the tribute barrel (partial fulfillment allowed).
-3. Fulfillment ratio → happiness delta (weighted: food > comfort > luxury).
-4. Apply outcomes:
-   - **Thriving** (happiness ≥ 70): happy particles, slow population growth
-     (spawns capped by beds/housing), tax income (emeralds appear in the
-     tribute barrel — the colony pays you).
-   - **Content** (40–69): stable; nothing dramatic.
-   - **Struggling** (< 40): bell tolls, angry particles, population decline
-     (villagers emigrate), no taxes.
-5. Update the colony **bossbar** (name, population, tier, happiness) shown
-   to players near the colony.
+## 3. Named citizens
 
-**Promotion** is player-triggered, like Anno: when happiness has been ≥ 70
-for N consecutive cycles and the next tier's goods are stocked in the
-barrel, sneak-click the bell with the tier's promotion token (I: emerald →
-II: emerald block → III: brass ingot → IV: precision mechanism). Promotion
-raises the consumption matrix — your factories must keep up or the colony
-slides back.
+Every counted villager receives a persistent name (visible nametag) drawn
+from the colony name pool. Events are personal: "Greta has joined Colony 1",
+"Bjorn has starved." Names live on the entity itself, so they survive
+restarts and travel with the villager.
 
-**Threat** scales with wealth: cumulative taxes paid raise a raid meter;
-crossing thresholds triggers vanilla raids at the colony (guards, walls,
-Guard Villagers and Big Cannons become load-bearing).
+## 4. Needs & tiers (unchanged from v1, phased in v0.3)
 
-**Trade/empire**: each charter is independent; different colonies will sit
-in different biomes with different local resources, so meeting Tier III+
-needs everywhere requires **moving goods between colonies** — the Create
-trains/airships/packages layer, exactly as the pack intends. A later
-version adds per-colony specialization bonuses (a colony near a mesa gets a
-brick-production tax bonus, etc.).
+Tier ladder Settlers → Citizens → Burghers → Industrialists; each tier
+consumes lower tiers' goods plus its own (simple food → FD meals + wool →
+paper + bricks → Create luxuries + clockworks). Structure needs join goods
+needs per tier (Market for II, School for III...). Promotion by token at the
+bell when happiness held ≥ 70 and next-tier goods are stocked. Taxes
+(emeralds into the tribute barrel) scale with tier and housed/employed
+population. Cumulative wealth raises a **raid meter** that triggers vanilla
+raids at the bell.
 
-## What this deliberately does NOT simulate
+## 5. Simulation cycle (current implementation)
 
-Individual villager job AI (Manor Lords' visible laborers). Vanilla villager
-AI provides ambient life (workstations, gossip, sleep, iron golems); real
-labor simulation is either the Recruits/Workers mods (if their 1.21.1 ports
-materialize) or the eventual Java addon. The Charter keeps colony *state*
-alive; bodies-at-work is a separate layer.
+Every in-game hour per colony: census (name new citizens) → housing audit
+(registered houses, bed count, homeless calc) → feed from tribute barrel →
+happiness update (fed/unfed, homeless penalty) → hunger/death check →
+births / immigration / emigration → bossbar + world feedback (particles,
+bells, chat events to nearby players).
 
-## Implementation phases
+## 6. Implementation phases
 
-- **v0.1 (shipped)**: charter registration, population census, Tier I food
-  consumption, happiness, bossbar, thriving/struggling effects, growth and
-  decline. Single tier, overworld only.
-- **v0.2**: full tier matrix + promotion tokens + per-need weighting.
-- **v0.3**: taxes, raid meter, festival (ring the bell manually → spend
-  goods for a happiness burst).
-- **v0.4**: multi-colony ledger command (`/charter ledger`), per-colony
-  specialization, quest chapter rewritten around the Charter loop.
-- **vNext**: if the loop proves fun and outgrows scripting, port to a real
-  NeoForge addon ("Create: Charter") reusing the proven design.
+- **v0.1** ✅ charter, census, Tier I food, happiness, bossbar, growth/decline.
+- **v0.2** ✅ (this build) guild-sign Houses + housing capacity + homelessness,
+  named citizens, starvation deaths, immigration/emigration, richer events.
+- **v0.3** Workshops/School/Market/Guard services, tier matrix + promotion
+  tokens, taxes, employment.
+- **v0.4** Raid meter, festivals, `/charter ledger`, colony specialization,
+  quest chapters rewritten around the Charter (MineColonies references
+  retired), first shipped prebuild schematics.
+- **vNext** Port to a real NeoForge addon if the loop outgrows scripting.
 
 ## Files
 
 - `pack/kubejs/server_scripts/charter.js` — the simulation (server-side).
-- Balance constants live at the top of the script, clearly labeled.
+- `pack/schematics/` — shipped prebuild blueprints (Create schematic .nbt).
+- Balance constants at the top of the script.
