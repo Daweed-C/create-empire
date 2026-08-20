@@ -179,6 +179,10 @@ opt mr "yungs-better-mineshafts"         "YUNG's Better Mineshafts"
 opt mr "yungs-better-strongholds"        "YUNG's Better Strongholds"
 opt mr "yungs-better-desert-temples"     "YUNG's Better Desert Temples"
 opt mr "guard-villagers"                 "Guard Villagers"
+# talhanation's hireable-humans suite — availability probe for 1.21.1
+# NeoForge (confirmed builds were 1.20.1 Forge; CI is the arbiter).
+opt mr "recruits|cf:recruits"            "Villager Recruits (soldiers, patrols, sieges)"
+opt mr "workers|cf:workers"              "Villager Workers 2 (hireable laborers)"
 
 # --- MineColonies x Farmer's Delight compat datapack ------------------------
 # Fetched into Paxi's global datapack folder so it applies to every world.
