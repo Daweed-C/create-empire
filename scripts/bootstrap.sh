@@ -170,6 +170,7 @@ opt mr "create-central-kitchen"          "Create: Central Kitchen"
 opt mr "slice-and-dice|create-slice-and-dice" "Create: Slice & Dice"
 
 echo "== Create addons: rails, sky, defense, factory =="
+opt mr "create-aeronautics-automated-logistics" "Create Aeronautics: Automated Logistics (autonomous airship routes)"
 opt mr "create-big-cannons"              "Create Big Cannons"
 opt mr "create-connected"                "Create: Connected"
 opt mr "copycats|copycats-plus"          "Create: Copycats+"
