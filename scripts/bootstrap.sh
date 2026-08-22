@@ -47,6 +47,28 @@ ALLOWED=""
 REQ_CHECKS=()
 OPT_CHECKS=()
 
+# ID-based adds (mrid/cfid) resolve exactly and cannot fuzzy-match, so the
+# files they create — dependencies included — are whitelisted automatically
+# by diffing mods/ around the add.
+autoAllowNew() {
+  local pre="$1" f base
+  for f in mods/*.pw.toml; do
+    [ -e "$f" ] || continue
+    base=$(basename "$f")
+    case "$pre" in
+      *" $base "*) ;;
+      *) ALLOWED="$ALLOWED ${base%.pw.toml}" ;;
+    esac
+  done
+}
+snapshotMods() {
+  local f out=" "
+  for f in mods/*.pw.toml; do
+    [ -e "$f" ] && out="$out$(basename "$f") "
+  done
+  printf '%s' "$out"
+}
+
 # Candidates are separated by "|". Each candidate may carry an explicit
 # source prefix ("mr:slug" for Modrinth, "cf:slug" for CurseForge,
 # "cfid:<numeric id>" / "mrid:<project id>" for exact store IDs); without a
@@ -54,7 +76,7 @@ OPT_CHECKS=()
 # other store, e.g. "minecolonies|cf:minecolonies".
 add_mod() {
   local level="$1" default_source="$2" slugs="$3" name="$4"
-  local token slug src ok=0 out last_err="" expected=""
+  local token slug src ok=0 out last_err="" expected="" pre=""
   IFS='|' read -ra candidates <<< "$slugs"
   # Register every slug candidate for the prune allowlist and verify pass UP
   # FRONT, not as candidates get tried: when an ID candidate succeeds first,
@@ -83,9 +105,17 @@ add_mod() {
       # pulled entirely unrelated mods into the pack twice. IDs are immune;
       # slug/url misses are caught by the prune + verify pass below.
       mr)   out=$("$PACKWIZ" modrinth add "https://modrinth.com/mod/$slug" -y 2>&1) && ok=1 && break ;;
-      mrid) out=$("$PACKWIZ" modrinth add --project-id "$slug" -y 2>&1) && ok=1 && break ;;
+      mrid)
+        pre=$(snapshotMods)
+        if out=$("$PACKWIZ" modrinth add --project-id "$slug" -y 2>&1); then
+          ok=1; autoAllowNew "$pre"; break
+        fi ;;
       cf)   out=$("$PACKWIZ" curseforge add "https://www.curseforge.com/minecraft/mc-mods/$slug" -y 2>&1) && ok=1 && break ;;
-      cfid) out=$("$PACKWIZ" curseforge add --addon-id "$slug" -y 2>&1) && ok=1 && break ;;
+      cfid)
+        pre=$(snapshotMods)
+        if out=$("$PACKWIZ" curseforge add --addon-id "$slug" -y 2>&1); then
+          ok=1; autoAllowNew "$pre"; break
+        fi ;;
       cftx) out=$("$PACKWIZ" curseforge add "https://www.curseforge.com/minecraft/texture-packs/$slug" -y 2>&1) && ok=1 && break ;;
     esac
     last_err=$(printf '%s' "$out" | tail -1)
@@ -153,9 +183,9 @@ opt mr "create-diesel-generators"        "Create: Diesel Generators"
 opt mr "create-blocks-and-bogies|blocks-and-bogies|cf:create-blocks-and-bogies" "Create: Blocks & Bogies"
 
 echo "== Storage & QoL =="
-req mr "jei"                             "JEI"
+# JEI replaced by EMI, JourneyMap by Xaero's (both arrive via the absorbed
+# Create+ list) — curation decisions 2026-08-18.
 req mr "jade"                            "Jade"
-opt mr "journeymap"                      "JourneyMap"
 opt mr "appleskin"                       "AppleSkin"
 opt mr "mouse-tweaks"                    "Mouse Tweaks"
 opt mr "sophisticated-backpacks"         "Sophisticated Backpacks"
@@ -183,6 +213,9 @@ opt mr "guard-villagers"                 "Guard Villagers"
 # NeoForge (confirmed builds were 1.20.1 Forge; CI is the arbiter).
 opt mr "recruits|cf:recruits"            "Villager Recruits (soldiers, patrols, sieges)"
 opt mr "workers|cf:workers"              "Villager Workers 2 (hireable laborers)"
+
+# --- Mods absorbed from the Create+ pack (see scripts/createplus-mods.sh) ---
+source ../scripts/createplus-mods.sh
 
 # --- MineColonies x Farmer's Delight compat datapack ------------------------
 # Fetched into Paxi's global datapack folder so it applies to every world.
@@ -227,6 +260,7 @@ done
 # "OK" lines alone prove nothing — presence of the expected file does.
 for entry in "${REQ_CHECKS[@]}"; do
   name="${entry%%::*}"; expected="${entry#*::}"
+  [ -z "${expected// /}" ] && continue  # id-only entries are tracked by autoAllowNew
   found=0
   for s in $expected; do
     [ -f "mods/$s.pw.toml" ] && found=1 && break
@@ -238,6 +272,7 @@ for entry in "${REQ_CHECKS[@]}"; do
 done
 for entry in "${OPT_CHECKS[@]}"; do
   name="${entry%%::*}"; expected="${entry#*::}"
+  [ -z "${expected// /}" ] && continue  # id-only entries are tracked by autoAllowNew
   found=0
   for s in $expected; do
     [ -f "mods/$s.pw.toml" ] && found=1 && break
