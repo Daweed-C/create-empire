@@ -183,9 +183,11 @@ opt mr "create-diesel-generators"        "Create: Diesel Generators"
 opt mr "create-blocks-and-bogies|blocks-and-bogies|cf:create-blocks-and-bogies" "Create: Blocks & Bogies"
 
 echo "== Storage & QoL =="
-# JEI replaced by EMI, JourneyMap by Xaero's (both arrive via the absorbed
-# Create+ list) — curation decisions 2026-08-18.
+# JEI replaced by EMI (arrives via the absorbed Create+ list). JourneyMap
+# kept over Xaero's — governor's preference (it bundles fullscreen map AND
+# minimap in one mod).
 req mr "jade"                            "Jade"
+opt mr "journeymap"                      "JourneyMap (fullscreen map + minimap)"
 opt mr "appleskin"                       "AppleSkin"
 opt mr "mouse-tweaks"                    "Mouse Tweaks"
 opt mr "sophisticated-backpacks"         "Sophisticated Backpacks"
