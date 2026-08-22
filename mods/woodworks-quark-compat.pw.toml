@@ -1,0 +1,13 @@
+name = "Woodworks Quark Compat"
+filename = "st_wqc-1.21.1-2.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/d8ckxWIR/versions/3zx1ReZZ/st_wqc-1.21.1-2.0.jar"
+hash-format = "sha512"
+hash = "be526b4929e11a98d2a07fdc0425b1f74250acd6f65f26b041755236ccf8eab3f7750f9bbb43343fbf5edf77507b9b13a04ec676690a6f08b792f5dd98a91906"
+
+[update]
+[update.modrinth]
+mod-id = "d8ckxWIR"
+version = "3zx1ReZZ"

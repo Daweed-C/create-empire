@@ -1,0 +1,101 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "1_hamlet"
+	group: ""
+	icon: { id: "minecraft:bell" }
+	id: "0000000000000100"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Welcome, future Governor."
+				""
+				"Somewhere out there is a valley that will one day be the heart of an empire. For now, you need a place to put four settlers and a dream."
+				""
+				"Craft (or find in your starter gear) the Supply Camp and deploy it on open ground — it contains everything needed to found a colony."
+			]
+			icon: { id: "minecolonies:supplycampdeployer" }
+			id: "0000000000000101"
+			rewards: [{ id: "0000000000000181", item: "minecraft:bread", count: 16, type: "item" }]
+			size: 1.5d
+			tasks: [{ id: "0000000000000141", item: "minecolonies:supplycampdeployer", type: "item" }]
+			title: "A Place to Stand"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000101"]
+			description: [
+				"Place the Town Hall block from the supply camp and claim your land."
+				""
+				"Congratulations — you are now the governor of the smallest municipality in the world. Population: you."
+			]
+			icon: { id: "minecolonies:blockhuttownhall" }
+			id: "0000000000000102"
+			rewards: [{ id: "0000000000000182", item: "minecraft:emerald", count: 4, type: "item" }]
+			tasks: [{ id: "0000000000000142", item: "minecolonies:blockhuttownhall", type: "item" }]
+			title: "Founding Charter"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000102"]
+			description: [
+				"Nothing gets built without a Builder. Craft the Builder's Hut, place it, and assign your first citizen."
+				""
+				"Tip: the build tool lets you preview every structure before committing. You can also scan your own vanilla-style buildings with the Scan Tool and use them as this colony's style."
+			]
+			icon: { id: "minecolonies:blockhutbuilder" }
+			id: "0000000000000103"
+			rewards: [{ id: "0000000000000183", item: "minecraft:iron_ingot", count: 8, type: "item" }]
+			tasks: [{ id: "0000000000000143", item: "minecolonies:blockhutbuilder", type: "item" }]
+			title: "The First Trade"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000103"]
+			description: [
+				"Citizens need food and shelter before they need industry. Build a Tavern — it houses four citizens and attracts new arrivals."
+			]
+			icon: { id: "minecolonies:blockhuttavern" }
+			id: "0000000000000104"
+			rewards: [{ id: "0000000000000184", item: "minecraft:oak_log", count: 32, type: "item" }]
+			tasks: [{ id: "0000000000000144", item: "minecolonies:blockhuttavern", type: "item" }]
+			title: "Room at the Inn"
+			x: 6.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0000000000000103"]
+			description: [
+				"A Farmer feeds the colony while you build the machines that will one day feed a nation."
+			]
+			icon: { id: "minecolonies:blockhutfarmer" }
+			id: "0000000000000105"
+			rewards: [{ id: "0000000000000185", item: "minecraft:wheat_seeds", count: 24, type: "item" }]
+			tasks: [{ id: "0000000000000145", item: "minecolonies:blockhutfarmer", type: "item" }]
+			title: "Daily Bread"
+			x: 6.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0000000000000104", "0000000000000105"]
+			description: [
+				"Raiders have noticed your smoke on the horizon. Build a Guard Tower before they pay a visit."
+				""
+				"Raids in this pack are tuned harder than default. Walls are not decoration."
+			]
+			icon: { id: "minecolonies:blockhutguardtower" }
+			id: "0000000000000106"
+			rewards: [{ id: "0000000000000186", item: "minecraft:iron_sword", count: 1, type: "item" }]
+			tasks: [{ id: "0000000000000146", item: "minecolonies:blockhutguardtower", type: "item" }]
+			title: "Watchful Eyes"
+			x: 8.0d
+			y: 0.0d
+		}
+	]
+	title: "Chapter I · The Hamlet"
+}

@@ -1,0 +1,13 @@
+name = "Areas"
+filename = "areas-1.21.1-6.4.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/NWvsqJ2Z/versions/ApvQigGP/areas-1.21.1-6.4.jar"
+hash-format = "sha512"
+hash = "18fd5d20f059305f878473bd914fb02c7b857190daa053f1458dc493711d51cab4635d4ced4f6d0a927efa379b9b265330db8d160493a3c6e8815ac590b55bcc"
+
+[update]
+[update.modrinth]
+mod-id = "NWvsqJ2Z"
+version = "ApvQigGP"

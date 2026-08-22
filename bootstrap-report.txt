@@ -1,0 +1,646 @@
+WARN: could not query NeoForge maven; keeping pinned version from pack.toml
+OK       Create (mr:create)
+OK       Create: Steam 'n' Rails (NeoForge port) (mr:create-steam-n-rails-1.21.1)
+OK       Create: Aeronautics (pulls in Sable) (mr:create-aeronautics)
+OK       MineColonies (pulls in Structurize/BlockUI/Domum/Multi-Piston) (cf:minecolonies)
+OK       MineColonies Compatibility addon (modded food & crops) (cf:minecolonies-compatibility)
+OK       Stylecolonies (extra building style packs incl. Create-themed Steampunk) (cf:stylecolonies)
+skipped  MineColonies Vanillafied (vanilla-look retexture, resource pack) (cftx:minecolonies-vanillafied) — no 1.21.1 NeoForge build found (optional) — last error: Failed to get file for project: mod not available for the configured Minecraft version(s) (use the 'packwiz settings acceptable-versions' command to accept more) or loader
+OK       KubeJS (runs the Charter colony simulation) (mr:kubejs)
+OK       FTB Quests (cfid:289412)
+OK       FTB Teams (cfid:404468)
+OK       FTB Library (cfid:404465)
+OK       Farmer's Delight (mr:farmers-delight)
+OK       Create: Central Kitchen (mr:create-central-kitchen)
+OK       Create: Slice & Dice (mr:slice-and-dice)
+OK       Create Aeronautics: Automated Logistics (autonomous airship routes) (mr:create-aeronautics-automated-logistics)
+OK       Create Big Cannons (mr:create-big-cannons)
+OK       Create: Connected (mr:create-connected)
+OK       Create: Copycats+ (mr:copycats)
+skipped  Create: Structures (create-structures) — no 1.21.1 NeoForge build found (optional) — last error: 	To use datapacks, add a datapack loader mod and specify the datapack-folder option with the folder this mod loads datapacks from
+OK       Create: Bells & Whistles (mr:bellsandwhistles)
+OK       Create: Enchantment Industry (mr:create-enchantment-industry)
+OK       Create: Diesel Generators (mr:create-diesel-generators)
+skipped  Create: Blocks & Bogies (create-blocks-and-bogies|blocks-and-bogies|cf:create-blocks-and-bogies) — no 1.21.1 NeoForge build found (optional) — last error: No projects found!
+OK       Jade (mr:jade)
+OK       JourneyMap (fullscreen map + minimap) (mr:journeymap)
+OK       AppleSkin (mr:appleskin)
+OK       Mouse Tweaks (mr:mouse-tweaks)
+OK       Sophisticated Backpacks (mr:sophisticated-backpacks)
+OK       Sophisticated Storage (mr:sophisticated-storage)
+OK       Sodium (mr:sodium)
+OK       FerriteCore (mr:ferrite-core)
+OK       Lithium (mr:lithium)
+OK       ModernFix (mr:modernfix)
+OK       Entity Culling (mr:entityculling)
+OK       ImmediatelyFast (mr:immediatelyfast)
+OK       Iris (shader support) (mr:iris)
+OK       Paxi (loads the bundled compat datapack; pulls in YUNG's API) (mr:paxi)
+OK       Terralith (mr:terralith)
+OK       Towns & Towers (mr:towns-and-towers)
+OK       ChoiceTheorem's Overhauled Villages (CTOV) (mr:ct-overhaul-village)
+OK       YUNG's Better Mineshafts (mr:yungs-better-mineshafts)
+OK       YUNG's Better Strongholds (mr:yungs-better-strongholds)
+OK       YUNG's Better Desert Temples (mr:yungs-better-desert-temples)
+OK       Guard Villagers (mr:guard-villagers)
+skipped  Villager Recruits (soldiers, patrols, sieges) (recruits|cf:recruits) — no 1.21.1 NeoForge build found (optional) — last error: Failed to get file for project: mod not available for the configured Minecraft version(s) (use the 'packwiz settings acceptable-versions' command to accept more) or loader
+skipped  Villager Workers 2 (hireable laborers) (workers|cf:workers) — no 1.21.1 NeoForge build found (optional) — last error: Failed to get file for project: mod not available for the configured Minecraft version(s) (use the 'packwiz settings acceptable-versions' command to accept more) or loader
+OK       abyssal_decor_1.21.1_0.11.0_Neoforge (mrid:dzmhUvoY)
+OK       adventuredungeons-neoforge-1.21-1.3.1 (mrid:ADHjiwby)
+OK       aeroencasedpipe-1.0.7 (mrid:DdAlVT8M)
+OK       aeronauticscompat-1.1.3 (mrid:aLVC5usA)
+OK       aeroworks-1.4.2 (mrid:P26k79kP)
+OK       aileron-1.21.1-neoforge-1.1.4 (mrid:b8kG1VGq)
+OK       alloyed-3.0.9+1.21.1-neoforge (mrid:KUInlTFo)
+OK       alloyedandcgscompat-1.1.1 (mrid:ASBFNk0M)
+OK       almostunified-neoforge-1.21.1-1.4.2 (mrid:sdaSaQEz)
+OK       amendments-1.21-2.0.15-neoforge (mrid:6iTJugQR)
+OK       another_furniture-neoforge-4.0.2 (mrid:ulloLmqG)
+OK       appleskin-neoforge-mc1.21-3.0.9 (mrid:EsAfCjCV)
+OK       architectury-13.0.8-neoforge (mrid:lhGA9TYQ)
+OK       areas-1.21.1-6.4 (mrid:NWvsqJ2Z)
+OK       ArmorStatues-v21.1.0-1.21.1-NeoForge (mrid:bbGCtEvb)
+OK       asynclogger-1.1.4+1.21.1-neoforge (mrid:zvNzKfGF)
+OK       AsyncParticles-21.1.0b-beta.2+1.21.1 (mrid:c3onkd5k)
+OK       athena-neoforge-1.21.1-4.0.6 (mrid:b1ZV3DIJ)
+OK       AxesAreWeapons-1.10.2-neoforge-1.21 (mrid:1jvt7RTc)
+OK       BadOptimizations-2.4.1-1.21.1 (mrid:g96Z4WVZ)
+OK       ballastmod-0.1.0 (mrid:5ypXYrfG)
+OK       balm-neoforge-1.21.1-21.0.58 (mrid:MBAkmtvl)
+OK       bellsandwhistles-0.4.7-1.21.1 (mrid:gJ5afkVv)
+OK       betterbiomeblend-1.5.2 (mrid:Xh8hkQmD)
+OK       bettervillage-neoforge-1.21.1-3.3.1 (mrid:dGVX5JbJ)
+OK       better_lib-neoforge-1.21.1-1.0.111 (mrid:2x0ULgTj)
+OK       bits_n_bobs-0.0.44 (mrid:T8bvmqVZ)
+OK       blueprint-1.21.1-8.1.1 (mrid:VsM5EDoI)
+OK       bookshelf-neoforge-1.21.1-21.1.81 (mrid:uy4Cnpcm)
+OK       bountiful-neoforge-8.0.0-beta.2 (mrid:BpwWFOVM)
+OK       brick_and_mortar-neoforge-1.21.1-1.1.0 (mrid:ntRJD9NS)
+OK       call-your-horse-v1.3.11 (mrid:QuDyXDNw)
+OK       carryon-neoforge-1.21.1-2.2.4.4 (mrid:joEfVgkn)
+OK       CarryOnAeroCompat-1.21.1-1.1.1 (mrid:MpnDZ1Lx)
+OK       cbc_at_Neoforge_1.21.1_0.1.4c (mrid:pTfszyXD)
+OK       cerulean-neoforge-1.0.0-1.21.1 (mrid:dv57xmf9)
+OK       cfwinfo-1.9.1 (mrid:csA0cpEX)
+OK       cgsbreakglassdoors-1.1.1 (mrid:NwxGPyDG)
+OK       chat_heads-0.15.2-neoforge-1.21 (mrid:Wb5oqrBJ)
+OK       chefsdelight-1.0.5-neoforge-1.21.1 (mrid:pvcsfne4)
+OK       chipped-neoforge-1.21.1-4.0.2 (mrid:BAscRYKm)
+OK       cloth-config-15.0.140-neoforge (mrid:9s6osm5g)
+OK       cmlinkedremote-neoforge-2.0.0 (mrid:4hoqvPkW)
+OK       collective-1.21.1-8.39 (mrid:e0M1UDsY)
+OK       Companion-1.21.1-NeoForge-6.2.1 (mrid:4w0EzGRW)
+OK       ConfiguredDefaults-v21.1.3-1.21.1-NeoForge (mrid:SISoSFPP)
+OK       connectiblechains-neoforge-1.21.1-2.1.0 (mrid:5pzBXDS3)
+OK       continuity-3.0.0+1.21.neoforge (mrid:1IjD5062)
+OK       Controlling-neoforge-1.21.1-19.0.5 (mrid:xv94TkTM)
+OK       copycats-3.0.7+mc.1.21.1-neoforge (mrid:UT2M39wf)
+OK       coroutil-neoforge-1.21.0-1.3.8 (mrid:rLLJ1OZM)
+OK       Create Components and Additions 2.3 (mrid:exLPXAoq)
+OK       Create Encased-1.21.1-1.9.0-ht3 (mrid:hSSqdyU1)
+OK       create-1.21.1-6.0.10 (mrid:LNytGWDc)
+OK       create-aeronautics-bundled-1.21.1-1.3.0 (mrid:oWaK0Q19)
+OK       create-cardboarded-conveynience-1.21.1-neoforge-1.0.0 (mrid:dWU6xUnj)
+OK       create-enchantment-industry-2.4.2 (mrid:JWGBpFUP)
+OK       create-extended-wrenches-1.21.1-2.0.2 (mrid:WNRCHiE5)
+OK       create-gunsmithing-1.21.1-1.4.9 (mrid:7KCNsGPM)
+OK       create-man-of-many-planes-1.1 (mrid:F4Rdk2PX)
+OK       create-renewable-netherite-2.0.1 (mrid:nGq1sdd2)
+OK       create-shufflefilter-2.1.0-neo (mrid:gv5RRavC)
+OK       create-stuff-additions1.21.1_v2.1.4b (mrid:aq9qUUQG)
+OK       create-track-map-2.1+mc1.21.1-neoforge (mrid:NHRXB9Bi)
+OK       createadditionallogistics-1.21.1-1.4.5 (mrid:CZaz7aje)
+OK       createaddoncompatibility-neoforge-1.21.1-1.0.0 (mrid:QgrK9rtJ)
+OK       createbetterfps-1.21.1-1.1.4 (mrid:lMYIHZNH)
+OK       createbigcannons-5.11.6+mc.1.21.1 (mrid:GWp4jCJj)
+OK       createcobblestone-1.4.12+neoforge-1.21.1-144 (mrid:ihpnEd80)
+OK       createdeco-2.1.3 (mrid:sMvUb4Rb)
+OK       createdieselgenerators-1.21.1-1.3.15 (mrid:ZM3tt6p1)
+OK       CreateDragonsPlus-1.11.2b (mrid:dzb1a5WV)
+OK       createendertransmission-2.1.1-1.21.1 (mrid:wtW8g4TG)
+OK       createfood-neoforge-1.21.1-2.7.1 (mrid:4HnO3el1)
+OK       createframed-1.21.1-1.7.3 (mrid:15fFZ3f4)
+OK       createidlx-1.21.1-1.5 (mrid:n0AbAYWj)
+OK       createliquidfuel-2.1.1-1.21.1 (mrid:sH9tXU9f)
+OK       createnewbeg-0.1.0-1.21.1 (mrid:XDDw6edF)
+OK       createnuclear-1.3.2-beta.3-neoforge (mrid:z611fdf7)
+OK       createoreexcavation-1.21-1.6.8 (mrid:ResbpANg)
+OK       createprism-1.2.2 (mrid:udEtt0b2)
+OK       createpropulsion-1.1.5 (mrid:ApkoHNO9)
+OK       createrailwaysnavigator-neoforge-1.21.1-beta-0.9.1-C6 (mrid:Dq3STxps)
+OK       createschematichelper-neoforge-mc1.21.1-2.1.0 (mrid:vDsPXWBh)
+OK       createthreadedtrains-neoforge-1.21.1-1.0.0 (mrid:RYJzdkDr)
+OK       createtransmission-1.2.2+neoforge-create6-1.21.1 (mrid:QFCkBuIh)
+OK       create_aeronautics_throwable_rope_connector-0.4.3 (mrid:9xiCbKmM)
+OK       create_bb-1.0.7-1.21.1-Neoforge (mrid:j4ARnQwY)
+OK       create_better_villagers-1.3.2 (mrid:kS90mr4y)
+OK       create_compatible_storage-2.13.0-mc1.21.1-neoforge (mrid:5ofroZ5W)
+OK       create_connected-1.3.2-mc1.21.1 (mrid:Vg5TIO6d)
+OK       create_deep_dark-3.0.2-neoforge-1.21.1 (mrid:knrLSB8n)
+OK       create_extra_casing-4.0.4 (mrid:yEGVcr59)
+OK       create_factory-0.7a-1.21.1 (mrid:j6Zt3N7W)
+OK       create_jetpack-forge-5.2.1 (mrid:UbFnAd4l)
+OK       create_ltab-4.1.0 (mrid:fUa6OtBG)
+OK       create_mtg-1.2.0-neoforge (mrid:ALPd7u2x)
+OK       create_ore_excavation_plus-0.2.5-1.21.1 (mrid:ZHocuC06)
+OK       create_pattern_schematics-2.0.10 (mrid:cpqKG67r)
+OK       create_pillagers_arise NeoForge 1.21.1-132.36 (mrid:VT2rW2wr)
+OK       create_radar-0.4.9.4-1.21.1 (mrid:BLu2Yqfq)
+OK       create_ranged-1.2.0-neoforge-1.21.1 (mrid:ES4twYgt)
+OK       create_ratatouille-1.21.1-1.4.0 (mrid:XM0ifg8q)
+OK       create_rustic_structures-1.0.1-neoforge-1.21.1 (mrid:lmbZMkEZ)
+OK       create_stats-1.1.31SJ (mrid:inKFQSzo)
+OK       create_things_and_misc-4.1.1-neoforge-1.21.1 (mrid:uWrs8XlB)
+OK       create_train_parts-0.5.2-1.21.1-6.0.10-281 (mrid:h0bu4oDk)
+OK       create_vibrant_vaults-0.3.2 (mrid:hddN8ksR)
+OK       cristellib-neoforge-1.21.1-3.1.7 (mrid:cl223EMc)
+OK       ctl-neoforge-1.2.0 (mrid:nRC3whhL)
+OK       CutThrough-v21.1.0-1.21.1-NeoForge (mrid:Dk6su9JN)
+OK       deployer-0.1.2 (mrid:OZhUIuou)
+OK       Design-n-Decor-1.21.1-2.2b (mrid:x49wilh8)
+OK       DetailArmorBarReconstructed-5.0.1+1.21.1-neoforge (mrid:Si9Uim4y)
+OK       Ding-1.21-NeoForge-1.5.0 (mrid:UEtTD3gP)
+OK       DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge (mrid:uCdwusMi)
+OK       distractingtrims-neoforge-1.21.1-21.1.1 (mrid:xQU6E1ee)
+OK       DnDesires-1.21.1-2.3a-BETA (mrid:JmybsfWs)
+OK       dnd_aero_compat-1.0.0 (mrid:KhnOEVjA)
+OK       dragonlib-neoforge-1.21.1-beta-3.0.28 (mrid:sbIsGaOV)
+OK       dtquark-2.6.1 (mrid:9paueCZy)
+OK       dungeons-and-taverns-v4.4.4 (mrid:tpehi7ww)
+OK       DustyDecorations_1.21.1Neoforge_V1.13 (mrid:KgFOuaiZ)
+OK       dynamic-fps-3.11.4+minecraft-1.21.0-neoforge (mrid:LQ3K71Q1)
+OK       dynamictrees-neoforge-1.21.1-1.7.2 (mrid:vdjF5PL5)
+OK       DynamicTreesPlus-neoforge-1.21.1-1.3.2 (mrid:qaO9Dqpu)
+OK       EasyAnvils-v21.1.0-1.21.1-NeoForge (mrid:OZBR5JT5)
+skipped  eatinganimation-1.21.0-6.0.1 (mrid:X8CISwXp) — no 1.21.1 NeoForge build found (optional) — last error: 	To use datapacks, add a datapack loader mod and specify the datapack-folder option with the folder this mod loads datapacks from
+OK       ecologics-1.21.1-2.3.6 (mrid:NCKpPR0Z)
+skipped  eg-inventory-blur-1.0.1 (mrid:lTS6nyFs) — no 1.21.1 NeoForge build found (optional) — last error: 	To use datapacks, add a datapack loader mod and specify the datapack-folder option with the folder this mod loads datapacks from
+OK       emi-1.1.24+1.21.1+neoforge (mrid:fRiHVvU7)
+OK       emixx-neoforge-2.2.0 (mrid:N9WucjHL)
+OK       emi_loot-0.7.9+1.21+neoforge (mrid:qbbO7Jns)
+OK       ends_delight-2.6+neoforge.1.21.1 (mrid:yHN0njMr)
+OK       entityculling-neoforge-1.10.2-mc1.21.1 (mrid:NNAgCjsB)
+OK       entity_model_features-3.2.4-1.21-neoforge (mrid:4I1XuqiY)
+OK       entity_texture_features_1.21-neoforge-7.1 (mrid:BVzZfTc1)
+OK       escalated-1.3.2+mc.1.21.1 (mrid:LyOBYG8Q)
+OK       everycomp-1.21-2.11.50-neoforge (mrid:eiktJyw1)
+OK       explosiveenhancement-neoforge-1.21.1-1.1.2 (mrid:r0camchr)
+OK       extra_gauges-2.1.2 (mrid:6YJgomwt)
+OK       FarmersDelight-1.21.1-1.3.2 (mrid:R2OftAxM)
+OK       fastpaintings-1.21-1.3.0-neoforge (mrid:z3TzcquW)
+OK       ferritecore-7.0.3-neoforge (mrid:uXXizFIs)
+OK       flerovium-neoforge-1.21.1-1.0.18-all (mrid:4Rh1Mobu)
+OK       FramedBlocks-10.6.1 (mrid:wbgfS34j)
+OK       FramedMapsFix-1.21.1-1.0.5-NeoForge (mrid:N6wUhJWq)
+OK       fusion-1.3.13-neoforge-mc1.21.1 (mrid:p19vrgc2)
+OK       fzzy_config-0.7.6+1.21+neoforge (mrid:hYykXjDp)
+OK       geckolib-neoforge-1.21.1-4.9.2 (mrid:8BmcQJ2H)
+skipped  gml-6.0.2 (mrid:zg2tT2Vu) — no 1.21.1 NeoForge build found (optional) — last error: 	To use datapacks, add a datapack loader mod and specify the datapack-folder option with the folder this mod loads datapacks from
+OK       GPUTape-1.20.6-1.21x-1.0.3 (mrid:5CTSrY8X)
+OK       guardvillagers-2.4.10-1.21.1 (mrid:H1sntfo8)
+OK       iChunUtil-1.21-NeoForge-1.0.3 (mrid:W6ROj0Hl)
+OK       ImmediatelyFast-NeoForge-1.6.10+1.21.1 (mrid:5ZwdcRci)
+OK       immersive_aircraft-1.4.6+1.21.1-neoforge (mrid:x3HZvrj6)
+OK       immersive_armors-1.7.6+1.21.1-neoforge (mrid:eE2Db4YU)
+OK       immersive_paintings-neoforge-1.21.1-0.7.8 (mrid:6txNkua3)
+OK       improved-village-placement-1.2.0-neoforge-21.1 (mrid:KA0MllEw)
+OK       integrated_api-neoforge-1.21.1-1.8.0 (mrid:V6fKbpBN)
+OK       integrated_villages-1.3.3+1.21.1-neoforge (mrid:o1qh5qIF)
+OK       interiors-1.21.1-neoforge-0.6.1 (mrid:r4Knci2k)
+OK       Ixeris-4.4.4+1.21.1-neoforge (mrid:p8RJPJIC)
+OK       kambrik-neoforge-8.0.0-beta.2 (mrid:zfbCkvdZ)
+OK       Kerria-1.3.0+1.21.1-neoforge (mrid:f0ruQTF7)
+OK       Kiwi-1.21.1-NeoForge-15.8.4 (mrid:ufdDoWPd)
+OK       konkrete_neoforge_1.9.9_MC_1.21 (mrid:J81TRJWm)
+OK       kotlinforforge-5.11.0-all (mrid:ordsPcFz)
+OK       labels-neoforge-1.21-2.1.1 (mrid:x6r7yhfi)
+OK       lambdynamiclights-4.8.8+1.21.1 (mrid:yBW8D80W)
+OK       libraryferret-neoforge-1.21.1-4.0.0 (mrid:DOB2l4oJ)
+OK       lithium-neoforge-0.15.3+mc1.21.1 (mrid:gvQqBUqZ)
+OK       lithostitched-1.8.0+beta4-neoforge-21.1 (mrid:XaDC71GB)
+OK       lodestone-1.21.1-1.8.2 (mrid:bN3xUWdo)
+OK       lootr-neoforge-1.21.1-1.11.37.120 (mrid:EltpO5cN)
+OK       man_of_many_planes-0.2.1+1.21.1-neoforge (mrid:9qdTHi0q)
+OK       map_atlases-neoforge-1.21-6.6.0 (mrid:4hwXMFif)
+OK       mcqoy-0.4.1+neo-1.21 (mrid:tNmWwdI2)
+OK       mcw-lights-1.1.5-mc1.21.1neoforge (mrid:w4an97C2)
+OK       minersdelight-1.21.1-1.4.5 (mrid:qMxbM4BQ)
+OK       modelfix-1.21-1.10 (mrid:QdG47OkI)
+OK       modernfix-neoforge-5.27.12+mc1.21.1 (mrid:nmDcB62a)
+OK       moonlight-1.21.1-3.4.1-neoforge (mrid:twkfQtEc)
+OK       moreculling-neoforge-1.21.1-1.0.8 (mrid:51shyZVL)
+OK       more_sounds-1.21.x-0.3.0-beta (mrid:8jvcOd6S)
+OK       MouseTweaks-neoforge-mc1.21-2.26.1 (mrid:aC3cM3Vq)
+OK       movabletracks-1.0.1 (mrid:xX4m1GME)
+OK       mru-1.0.19+LTS+1.21.1+neoforge (mrid:SNVQ2c0g)
+OK       MyNethersDelight-1.21.1-1.10.2 (mrid:O53VhQoZ)
+OK       neobeefix-1.21.1-2.0.1 (mrid:DzSY371i)
+OK       netherite_horse_armor-neoforge-1.21.1-2.0a (mrid:nDFVOeq7)
+OK       netherportalfix-neoforge-1.21.1-21.1.1 (mrid:nPZr02ET)
+OK       Not Enough Recipe Book-NEOFORGE-0.4.3+1.21 (mrid:bQh7xzFq)
+OK       notenoughanimations-neoforge-1.12.3-mc1.21.1 (mrid:MPCX6s5C)
+OK       ntgl-1.21.1-3.2.0 (mrid:5m2kV8xK)
+OK       OctoLib-NEOFORGE-0.6.2+1.21 (mrid:RH2KUdKJ)
+OK       old_infrastructure-1.2.1-neoforge-1.21.1 (mrid:h7UjQwqh)
+OK       ParticleEffects-1.4.0+1.21.1+neoforge (mrid:PLAGcSFJ)
+OK       pipeorgans-0.8.2+1.21.1 (mrid:yGttHo06)
+OK       polytone-neoforge-1.21-3.7.1 (mrid:3qAYkBMB)
+OK       potionstacks-1.0.0 (mrid:CQTUbhIo)
+OK       powergrid-mc1.21.1-0.6.0.1 (mrid:eWiBLJ9R)
+OK       prickle-neoforge-1.21.1-21.1.11 (mrid:aaRl8GiW)
+OK       progresspeek-1.0.1+1.21.1-neoforge (mrid:1A2XNzUB)
+OK       PuzzlesLib-v21.1.51-1.21.1-NeoForge (mrid:QAGBst4M)
+OK       Quark-4.1-480 (mrid:qnQsVE2z)
+OK       quick-pack-neoforge-1.3.2+1.21.8 (mrid:pSISfJ4O)
+OK       railways-0.2.1+neoforge-mc1.21.1 (mrid:L3Jv0QZI)
+OK       rechiseled-1.2.5-neoforge-mc1.21 (mrid:B0g2vT6l)
+OK       rechiseledcreate-1.1.1-neoforge-mc1.21 (mrid:E6867niZ)
+OK       rechiseled_chipped-2.0-1.21.1 (mrid:ryYcxeeA)
+OK       reeses-sodium-options-neoforge-2.0.5+mc1.21.1 (mrid:Bh37bMuy)
+OK       reintegrated_chipped-1.0.0 (mrid:5Rel2hNl)
+OK       reliable_advancements-neoforge-1.21.1-4.0.0 (mrid:xVwaUG1g)
+OK       resourcefulconfig-neoforge-1.21-3.0.11 (mrid:M1953qlQ)
+OK       resourcefullib-neoforge-1.21-3.0.12 (mrid:G1hIVOrD)
+OK       Resourcify (1.21.1-neoforge)-1.8.3 (mrid:RLzHAoZe)
+OK       ritchiesprojectilelib-2.1.2+mc.1.21.1-neoforge (mrid:B3pb093D)
+OK       roadweaver-neoforge-2.3.1-1.21.1-hotfix (mrid:6jk8Pote)
+OK       sable-neoforge-1.21.1-2.0.3 (mrid:T9PomCSv)
+OK       sablebeyond-neoforge-1.21.1-v0.4.1 (mrid:PrW3B4fH)
+OK       sablephysicscompat-1.3.0 (mrid:sZbcIrJb)
+OK       scholar-neoforge-1.21.1-1.1.16 (mrid:fX4dIQCo)
+OK       seamlesssleep-neoforge-1.21-2.5.3 (mrid:IyHq05yB)
+OK       Searchables-neoforge-1.21.1-1.0.2 (mrid:fuuu3xnx)
+OK       sliceanddice-4.3.3-neoforge (mrid:GmjmRQ0A)
+OK       smallships-neoforge-1.21.1-2.0.0-b2.1 (mrid:rGWEHQrP)
+skipped  SmartBlockPlacement-2.0 (mrid:WVehudAZ) — no 1.21.1 NeoForge build found (optional) — last error: 	To use datapacks, add a datapack loader mod and specify the datapack-folder option with the folder this mod loads datapacks from
+OK       smarterfarmers-1.21-2.2.4-neoforge (mrid:Bh6ZOMvp)
+OK       smart_bounds-1.0.0 (mrid:kSok4DxT)
+OK       smoothswapping-0.9.3.2-1.21.1-neoforge (mrid:ydZic5r4)
+OK       sodium-extra-neoforge-0.8.7+mc1.21.1 (mrid:PtjYWJkn)
+OK       sodium-neoforge-0.8.12-beta.1+mc1.21.1 (mrid:AANobbMI)
+OK       sodiumoptionsapi-neoforge-1.0.10-1.21.1 (mrid:Es5v4eyq)
+OK       sophisticatedbackpacks-1.21.1-3.25.63.1912 (mrid:TyCTlI4b)
+OK       sophisticatedcore-1.21.1-1.4.58.2026 (mrid:nmoqTijg)
+OK       sounds-2.4.22+lts+1.21.1-neoforge (mrid:ZouiUX7t)
+OK       sparsestructures-neoforge-1.21.1-3.0 (mrid:qwvI41y9)
+OK       statuseffectbars-1.21.1-NeoForge-1.0.2 (mrid:TxIuhIFo)
+OK       structure_layout_optimizer-neoforge-1.0.12 (mrid:ayPU0OHc)
+OK       structurify-neoforge-2.0.34+mc1.21.1 (mrid:yz7AM2zx)
+OK       st_wqc-1.21.1-2.0 (mrid:d8ckxWIR)
+OK       supermartijn642configlib-1.1.8-neoforge-mc1.21 (mrid:LN9BxssP)
+OK       supermartijn642corelib-1.1.24-neoforge-mc1.21 (mrid:rOUBggPv)
+OK       supplementaries-neoforge-1.21.1-3.6.8 (mrid:fFEIiSDQ)
+OK       suppsquared-neoforge-1.21-1.2.18 (mrid:dCCkNFwE)
+OK       TerraBlender-neoforge-1.21.1-4.1.0.8 (mrid:kkmrDlKT)
+OK       tfmg-1.2.0 (mrid:USgVjXsk)
+OK       toomanyrecipeviewers-0.8.1+mc.21.1 (mrid:yFypjcfd)
+OK       torchmaster-neoforge-1.21.1-21.1.9 (mrid:Tl8ESrhX)
+OK       trashslot-neoforge-1.21.1-21.1.11 (mrid:vRYk0bv7)
+OK       triggermobs-neoforge-1.21.1-1.5.6 (mrid:zTVBLVOy)
+OK       trmt-0.5.1-1.21.1-neoforge (mrid:74oZhrEe)
+OK       tuningwrench-1.1.0-1.21.1 (mrid:Nz9jiNeA)
+OK       txnilib-neoforge-1.0.24-1.21.1 (mrid:vBbPDuOs)
+OK       t_and_t-fabric-neoforge-1.13.11 (mrid:DjLobEOy)
+OK       underground_village-neoforge-1.21.1-2.0 (mrid:KmyhssPl)
+OK       Updating World Icon-neoforge-1.21.1-1.0.1 (mrid:ZlX3EVmE)
+OK       villager-guards-v1.1.5 (mrid:SJq1tpNO)
+OK       villager-hats-1.7.2+1.21 (mrid:vghf63Ct)
+OK       vista-1.21.1-5.4.4-neoforge (mrid:zuARv1N7)
+OK       woodworks-1.21.1-4.0.2 (mrid:rv1sovni)
+OK       yeetusexperimentus-neoforge-87.0.0 (mrid:HaaH232J)
+OK       yet_another_config_lib_v3-3.8.2+1.21.1-neoforge (mrid:1eAoo2KR)
+OK       YungsApi-1.21.1-NeoForge-5.1.6 (mrid:Ua7DFN59)
+OK       YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5 (mrid:XNlO7sBv)
+OK       YungsBetterDungeons-1.21.1-NeoForge-5.1.4 (mrid:o1C1Dkj5)
+OK       YungsBetterEndIsland-1.21.1-NeoForge-3.1.2 (mrid:2BwBOmBQ)
+OK       YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2 (mrid:z9Ve58Ih)
+OK       YungsBetterMineshafts-1.21.1-NeoForge-5.1.1 (mrid:HjmxVlSr)
+OK       YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5 (mrid:Z2mXHnxP)
+OK       YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2 (mrid:3dT9sgt4)
+OK       YungsBetterStrongholds-1.21.1-NeoForge-5.1.3 (mrid:kidLKymU)
+OK       YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1 (mrid:t5FRdP87)
+OK       YungsBridges-1.21.1-NeoForge-5.1.1 (mrid:Ht4BfYp6)
+OK       YungsCaveBiomes-1.21.1-NeoForge-3.1.1 (mrid:cs7iGVq1)
+OK       YungsExtras-1.21.1-NeoForge-5.1.1 (mrid:ZYgyPyfq)
+OK       Zeta-1.1-40 (mrid:MVARlG2f)
+OK       zfastnoise-1.0.11+2+1.21.1+neoforge (mrid:OnlVIpq5)
+OK       zume-1.2.2 (mrid:o6qsdrrQ)
+OK       [Neoforge]ctov-3.6.3 (mrid:fgmhI8kH)
+OK       [neoforge]imst-2.2.1c (mrid:CVBAErky)
+OK       FA+Objects-v2.1.1 (mrid:23O9JVMV)
+OK       FA+Player-v1.1 (mrid:TAIMVZCL)
+OK       FA+Quivers-v2.2 (mrid:T4pK4GiQ)
+OK       FreshAnimations_v1.10.4 (mrid:50dA9Sha)
+skipped  mcfd-compat-patch — no 1.21.1 build published yet (MineColonies Compatibility addon covers most of it)
+OK       bundled create-empire-compat datapack
+PRUNED   towntalk — resolved but not in manifest or known dependencies
+note     optional 'Create: Structures' not present after verification
+note     optional 'Create: Blocks & Bogies' not present after verification
+note     optional 'Villager Recruits (soldiers, patrols, sieges)' not present after verification
+note     optional 'Villager Workers 2 (hireable laborers)' not present after verification
+
+-- resolved mod files --
+abyssal-decor
+adventure-dungeons
+aileron
+alloyed-and-create-gunsmithing-compatablity-pack
+almostunified
+amendments
+another-furniture
+appleskin
+architectury-api
+areas
+armor-statues
+asynclogger
+asyncparticles
+athena-ctm
+axes-are-weapons
+azimuth-api
+badoptimizations
+balm
+bbrb
+bellsandwhistles
+better-library
+better-village
+blocks-bogies
+blockui
+blueprint
+bookshelf-lib
+bountiful
+brick-and-mortar
+call-your-horse
+carry-on
+carryon-aeronautics-compat
+cerulean-advancements
+cgs
+chat-heads
+chefs-delight
+chipped
+cloth-config
+collective
+companion
+configured-defaults
+connector
+continuity
+controlling
+copycats
+coroutil
+create
+create-additional-logistics
+create-aeronautics
+create-aeronautics-automated-logistics
+create-aeronautics-compatability
+create-aeronautics-encased-fluid-pipes
+create-aeronautics-throwable-rope-connector
+create-aeroworks
+create-alloyed
+create-ballast
+create-better-villagers
+create-big-cannons
+create-big-cannons-advanced-technologies
+create-bits-n-bobs
+create-ca
+create-cardboarded-conveynience
+create-central-kitchen
+create-cobblestone
+create-compatible-storage
+create-connected
+create-deco
+create-deep-dark
+create-design-n-decor
+create-design-n-decor-aeronautics-compat
+create-diesel-generators
+create-dragons-plus
+create-dreams-and-desires
+create-encased
+create-enchantment-industry
+create-ender-transmission
+create-extra-casing
+create-factory
+create-food
+create-framed
+create-fuel-water-information
+create-graphs-stats
+create-gunsmithing-break-framed-glass-trapdoors
+create-idlx
+create-jetpack
+create-let-the-adventure-begin
+create-liquid-fuel
+create-man-of-many-planes
+create-misc-and-things
+create-more-linked-remote
+create-mtg
+create-new-beginnings
+create-old-infrastructure
+create-ore-excavation
+create-ore-excavation-plus
+create-pattern-schematics
+create-pillager-arise
+create-prismatic-shine
+create-propulsion-simulated
+create-radars
+create-railways-navigator
+create-ranged
+create-ratatouille
+create-renewable-netherite
+create-rustic-structures
+create-schematic-upload
+create-shuffle-filter
+create-smart-bounds
+create-sound-of-steam
+create-sound-of-steam-tuning-wrench
+create-steam-n-rails-1.21.1
+create-stuff-additions
+create-tfmg
+create-threaded-trains
+create-track-map-(unofficial-fork)
+create-train-lights
+create-train-parts
+create-transmission!
+create-vibrant-vaults
+createaddoncompatibility
+createbetterfps
+createnuclear
+cristel-lib
+ct-overhaul-village
+cut-through
+deployer
+detail-armor-bar-reconstructed
+ding
+distanthorizons
+distracting-trims
+domum-ornamentum
+dragonlib
+dungeons-and-taverns
+dusty-decorations
+dynamic-fps
+dynamic-trees-quark
+dynamictrees
+dynamictreesplus
+easy-anvils
+ecologics
+emi
+emi-loot
+ends-delight
+entity-model-features
+entityculling
+entitytexturefeatures
+escalated
+every-compat
+explosive-enhancement-forge
+extended-wrenches
+extra-gauges
+farmers-delight
+fast-paintings
+ferrite-core
+flerovium
+forgified-fabric-api
+framed-maps-fix
+framedblocks
+ftb-library-forge
+ftb-quests-forge
+ftb-teams-forge
+fusion-connected-textures
+fzzy-config
+geckolib
+gputape
+guard-villagers
+ichunutil
+immediatelyfast
+immersive-aircraft
+immersive-armors
+immersive-paintings
+immersive-structures
+improved-village-placement
+integrated-api
+integrated-villages
+interiors
+iris
+ixeris
+jade
+journeymap
+kambrik
+kerria-opt
+kiwi
+konkrete
+kotlin-for-forge
+kubejs
+labels
+lambdynamiclights
+library-ferret
+lithium
+lithostitched
+lodestonelib
+lootr
+macaws-lights-and-lamps
+man-of-many-planes
+map-atlases-forge
+mcqoy
+minecolonies
+minecolonies-compatibility
+minecolonies-tweaks
+miners-delight
+modelfix
+modernfix
+moonlight
+more-sounds
+moreculling
+mouse-tweaks
+movable-tracks
+mru
+multi-piston
+my-nethers-delight
+neo-bee-fix
+netherportalfix
+not-enough-animations
+notenoughrecipebook
+ntgl
+particle-effects
+paxi
+polytone
+potion-stacks
+power-grid
+prickle
+progresspeek
+puzzles-lib
+quark
+quick-pack
+rechiseled
+rechiseled-chipped
+rechiseled-create
+reconnectible-chains
+reeses-sodium-options
+reintegrated-chipped
+reliable-advancements
+reliable-emi
+resourceful-config
+resourceful-lib
+resourcify
+rhino
+roadweaver
+rpl
+sable
+sable_beyond
+sablecompat
+scholar
+seamless-sleep
+searchables
+shatterbyte-lib
+simple-netherite-horse-armor
+slice-and-dice
+small-ships
+smarter-farmers-farmers-replant
+smooth-swapping
+sodium
+sodium-extra
+sodium-options-api
+sophisticated-backpacks
+sophisticated-core
+sophisticated-storage
+sound
+sparsestructures
+status-effect-bars-reforged
+structure-layout-optimizer
+structurify
+structurize
+strut-your-stuff
+stylecolonies
+stylish-effects
+supermartijn642s-config-lib
+supermartijn642s-core-lib
+supplementaries
+supplementaries-squared
+terrablender
+terralith
+the-roads-more-travelled
+tmrv
+torchmaster
+towns-and-towers
+trashslot
+trigger-mobs
+txnilib
+underground-village,-stoneholm
+updating-world-icon
+villager-guards
+villager-hats
+vista_tv
+woodworks
+woodworks-quark-compat
+yacl
+yeetus-experimentus
+yungs-api
+yungs-better-desert-temples
+yungs-better-dungeons
+yungs-better-end-island
+yungs-better-jungle-temples
+yungs-better-mineshafts
+yungs-better-nether-fortresses
+yungs-better-ocean-monuments
+yungs-better-strongholds
+yungs-better-witch-huts
+yungs-bridges
+yungs-cave-biomes
+yungs-extras
+zeta
+zfastnoise
+zume

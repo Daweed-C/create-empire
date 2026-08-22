@@ -1,0 +1,13 @@
+name = "Potion Stacks"
+filename = "potionstacks-1.0.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/CQTUbhIo/versions/bnlB3gWi/potionstacks-1.0.0.jar"
+hash-format = "sha512"
+hash = "c62d1f602d8072b9f4b746525fc8a2b69f6a585dfeeae749de202cd5fc6dc67225954a930efee154671b42c97a7c7c224d6ca052a3d0c78071ec990b8f9ba1f4"
+
+[update]
+[update.modrinth]
+mod-id = "CQTUbhIo"
+version = "bnlB3gWi"

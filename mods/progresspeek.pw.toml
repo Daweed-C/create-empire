@@ -1,0 +1,13 @@
+name = "Progress Peek"
+filename = "progresspeek-1.0.3+1.21.1-neoforge.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/1A2XNzUB/versions/MciTCB1k/progresspeek-1.0.3%2B1.21.1-neoforge.jar"
+hash-format = "sha512"
+hash = "21325b3422241ae74c9c14b31c3155c7431b2cf850d770ebcb738c48da0af8d026dabee995a3e60e0ce32283440d2ebd5191d0bc6d55ef21237f0b0f9e584d03"
+
+[update]
+[update.modrinth]
+mod-id = "1A2XNzUB"
+version = "MciTCB1k"

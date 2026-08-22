@@ -1,0 +1,13 @@
+name = "Create: Ranged"
+filename = "create_ranged-1.2.0-neoforge-1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/ES4twYgt/versions/hZI9L9VQ/create_ranged-1.2.0-neoforge-1.21.1.jar"
+hash-format = "sha512"
+hash = "c2a36f6fd02e4eab33a836550467c7b3830a3be38a9f591b153220df193bdceba75e0dd54ed84e03e1293e1bd0e9225ca2dc7dd3bad4035d03d8336c47d437b5"
+
+[update]
+[update.modrinth]
+mod-id = "ES4twYgt"
+version = "hZI9L9VQ"
