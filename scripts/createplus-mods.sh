@@ -255,7 +255,10 @@ opt mr "mrid:dCCkNFwE" "suppsquared-neoforge-1.21-1.2.18"
 opt mr "mrid:kkmrDlKT" "TerraBlender-neoforge-1.21.1-4.1.0.8"
 opt mr "mrv:USgVjXsk:uDi14nbt" "TFMG 1.2.0 (PINNED: proven pair with bits_n_bobs 0.0.44)"
 opt mr "mrv:T8bvmqVZ:XKDQlGJW" "bits_n_bobs 0.0.44 (PINNED: governor keeps it; latest needs unreleased TFMG)"
-opt mr "mrid:yFypjcfd" "toomanyrecipeviewers-0.8.1+mc.21.1"
+# toomanyrecipeviewers (yFypjcfd) REMOVED: it impersonates the "jei" mod id
+# (emulating only 19.27) and duplicate-crashes against the real CurseForge
+# JEI 19.44 that Sophisticated Core 1.4.88+ requires. EMI + real JEI coexist
+# fine. Re-evaluate if TMRV ever emulates jei >= 19.32.
 opt mr "mrid:Tl8ESrhX" "torchmaster-neoforge-1.21.1-21.1.9"
 opt mr "mrid:vRYk0bv7" "trashslot-neoforge-1.21.1-21.1.11"
 opt mr "mrid:zTVBLVOy" "triggermobs-neoforge-1.21.1-1.5.6"
