@@ -219,6 +219,12 @@ opt cf "hostile-villages"                "Hostile Villages (overrun ruins to rec
 # Imperial economy + speaking roles (SPEC §4 / research decisions).
 opt mr "lightmans-currency"              "Lightman's Currency (coins, shops, banks)"
 opt mr "easy-npc|cf:easy-npc"            "Easy NPC (dialog characters: advisors, emissaries)"
+# The Easy NPC bundle requires its component mods as separate installs.
+opt mr "easy-npc-core|cf:easy-npc-core"  "Easy NPC: Core"
+opt mr "easy-npc-config-ui|cf:easy-npc-configuration-ui" "Easy NPC: Configuration UI"
+# Library deps that auto-resolution missed in practice (crash 2026-08-23).
+opt mr "puzzles-lib|cf:puzzles-lib"      "Puzzles Lib (Fuzss library: Illager Invasion, Easy Anvils...)"
+opt cf "cupboard"                        "Cupboard (Hostile Villages library)"
 # talhanation's hireable-humans suite — availability probe for 1.21.1
 # NeoForge (confirmed builds were 1.20.1 Forge; CI is the arbiter).
 opt mr "recruits|cf:recruits"            "Villager Recruits (soldiers, patrols, sieges)"
@@ -248,6 +254,12 @@ if [ -d ../sources/datapack/create-empire-compat ]; then
   (cd ../sources/datapack/create-empire-compat && zip -qr ../../../pack/config/paxi/datapacks/create-empire-compat.zip .) \
     && echo "OK       bundled create-empire-compat datapack" | tee -a "$REPORT"
 fi
+
+# --- Update pass: dependency-added mods can land at stale versions (an old
+# JEI once broke Sophisticated Core); bring every metafile to latest -----------
+pre_update=$(snapshotMods)
+"$PACKWIZ" update --all -y || echo "WARN: update --all failed; continuing with resolved versions" | tee -a "$REPORT"
+autoAllowNew "$pre_update"
 
 # --- Prune: whitelist enforcement -------------------------------------------
 # Delete every resolved metafile that is neither a manifest candidate nor a
