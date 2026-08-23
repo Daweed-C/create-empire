@@ -1,0 +1,13 @@
+name = "Immersive structures"
+filename = "immersive-structures-2.2.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/CVBAErky/versions/sBY4jR5x/immersive-structures-2.2.0.jar"
+hash-format = "sha512"
+hash = "8c9586ca958fddce30243f267f7b9a70efaac3363861d37f01004551f4862dcfd155bbdf1b3d1688172eb0ba9a6c801aefa129741b07be0cd3961bce269e5b65"
+
+[update]
+[update.modrinth]
+mod-id = "CVBAErky"
+version = "sBY4jR5x"
