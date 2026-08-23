@@ -41,7 +41,7 @@ failures_required=0
 # kotlin-for-forge: Slice & Dice. minecolonies-tweaks: MineColonies
 # Compatibility. create-dragons-plus: Central Kitchen + Enchantment Industry.
 # (All three confirmed by in-game dependency errors after being pruned.)
-KNOWN_DEPS="structurize blockui domum-ornamentum multi-piston sable sophisticated-core yungs-api architectury-api rpl cristel-lib flywheel ponder kotlin-for-forge minecolonies-tweaks create-dragons-plus rhino architectury"
+KNOWN_DEPS="structurize blockui domum-ornamentum multi-piston sable sophisticated-core yungs-api architectury-api rpl cristel-lib flywheel ponder kotlin-for-forge minecolonies-tweaks create-dragons-plus rhino architectury jei"
 
 ALLOWED=""
 REQ_CHECKS=()
@@ -281,6 +281,21 @@ fi
 pre_update=$(snapshotMods)
 "$PACKWIZ" update --all -y || echo "WARN: update --all failed; continuing with resolved versions" | tee -a "$REPORT"
 autoAllowNew "$pre_update"
+
+# --- JEI re-source: Sophisticated Core 1.4.88+ requires jei >= 19.32, but
+# Modrinth's 1.21.1 JEI channel stops at 19.27 — the 19.32+ builds ship on
+# CurseForge only (addon 238222). Replace whatever Modrinth metafile the
+# dependency resolver created with the CurseForge one, AFTER the update pass
+# so nothing bumps it back to the Modrinth version. ---------------------------
+for jf in mods/jei.pw.toml mods/jei-jei.pw.toml; do
+  if [ -e "$jf" ]; then "$PACKWIZ" remove "$(basename "${jf%.pw.toml}")" >/dev/null 2>&1 || rm -f "$jf"; fi
+done
+if "$PACKWIZ" curseforge add --addon-id 238222 -y >/dev/null 2>&1; then
+  jei_ver=$(grep -h "filename" mods/jei*.pw.toml 2>/dev/null | head -1)
+  echo "OK       JEI re-sourced from CurseForge ($jei_ver)" | tee -a "$REPORT"
+else
+  echo "WARN: CurseForge JEI add failed; Sophisticated suite may demand a newer JEI than Modrinth carries" | tee -a "$REPORT"
+fi
 
 # --- Prune: whitelist enforcement -------------------------------------------
 # Delete every resolved metafile that is neither a manifest candidate nor a
