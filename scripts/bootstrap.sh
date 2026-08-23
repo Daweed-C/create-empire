@@ -85,7 +85,7 @@ add_mod() {
   # add had just correctly installed).
   for token in "${candidates[@]}"; do
     case "$token" in
-      cfid:*|mrid:*|cftx:*) ;;  # ids resolve to other slugs; texture packs don't land in mods/
+      cfid:*|mrid:*|mrv:*|cftx:*) ;;  # ids resolve to other slugs; texture packs don't land in mods/
       mr:*|cf:*) ALLOWED="$ALLOWED ${token#*:}"; expected="$expected ${token#*:}" ;;
       *)         ALLOWED="$ALLOWED $token"; expected="$expected $token" ;;
     esac
@@ -96,6 +96,7 @@ add_mod() {
       cf:*)   src=cf;   slug="${token#cf:}" ;;
       cfid:*) src=cfid; slug="${token#cfid:}" ;;
       mrid:*) src=mrid; slug="${token#mrid:}" ;;
+      mrv:*)  src=mrv;  slug="${token#mrv:}" ;;
       cftx:*) src=cftx; slug="${token#cftx:}" ;;
       *)      src="$default_source"; slug="$token" ;;
     esac
@@ -109,6 +110,20 @@ add_mod() {
         pre=$(snapshotMods)
         if out=$("$PACKWIZ" modrinth add --project-id "$slug" -y 2>&1); then
           ok=1; autoAllowNew "$pre"; break
+        fi ;;
+      mrv)
+        # "mrv:<projectId>:<versionId>" — exact pinned version, then packwiz-
+        # pinned so the update --all pass never bumps it (used for proven
+        # version pairs like bits_n_bobs 0.0.44 + TFMG 1.2.0).
+        pre=$(snapshotMods)
+        if out=$("$PACKWIZ" modrinth add --project-id "${slug%%:*}" --version-id "${slug#*:}" -y 2>&1); then
+          ok=1; autoAllowNew "$pre"
+          for nf in mods/*.pw.toml; do
+            [ -e "$nf" ] || continue
+            nb=$(basename "$nf")
+            case "$pre" in *" $nb "*) ;; *) "$PACKWIZ" pin "${nb%.pw.toml}" >/dev/null 2>&1 || true ;; esac
+          done
+          break
         fi ;;
       cf)   out=$("$PACKWIZ" curseforge add "https://www.curseforge.com/minecraft/mc-mods/$slug" -y 2>&1) && ok=1 && break ;;
       cfid)
