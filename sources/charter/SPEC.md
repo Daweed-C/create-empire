@@ -16,11 +16,43 @@ Status: **in progress — sections are being decided one by one.**
 
 ## 3. The Work System
 
-[To be decided]
+[Core model per DESIGN v2 §3b (deterministic ledger yield, family
+assignment, mechanization). Details to be decided in this session.]
+
+*Decided 2026-08-18:* **visible labor is a v0.4 EntityJS experiment** —
+v0.3 ships the ledger with vanilla ambience; v0.4 prototypes one scripted
+AI goal (walk-to-registered-workplace) and expands only if stable. The
+ledger remains the source of truth regardless. Recruits/Workers staffing
+bonus stays a dormant provision until 1.21.1 ports exist.
 
 ## 4. Goods & the Economy
 
-[To be decided]
+*Decided 2026-08-18: the empire runs on real money.*
+
+- **Currency**: Lightman's Currency coins are the imperial money. Each
+  colony has a **treasury** (colony bank account); the governor has their
+  own. The emerald-in-a-barrel abstraction is retired when this lands.
+- **Taxes**: collected at the dawn report — per housed *and* purposeful
+  citizen (workers + service staff; the homeless and idle pay nothing),
+  scaled by tier. Deposited to the colony treasury; the governor draws from
+  it (withdrawals are a governor's right; an empty treasury is a warning
+  sign in itself).
+- **Consumption matrix**: per DESIGN v2 — each tier consumes lower tiers'
+  goods plus its own (simple food → FD meals + wool → paper + bricks →
+  Create luxuries + clockworks), from the tribute depot, deterministically.
+- **Markets**: the Market guild board (Tier II+ service) gains teeth via
+  Lightman's trader blocks near the board — citizens' shops. v0.3 checks
+  presence; v0.4 wires trade volume into happiness/tax bonuses.
+- **Inter-colony trade**: physical only. Geography drives specialization
+  (a mesa colony makes bricks cheaply; a plains colony grows grain), so
+  higher tiers force goods movement: scheduled trains (Steam 'n' Rails),
+  autonomous air freight (Aeronautics: Automated Logistics), Create 6
+  packages. No teleportation, ever.
+
+## 4b. Later: bandit economy
+
+Raids that breach a colony can loot its treasury; bounties (Bountiful
+boards) let the governor pay for protection. Deferred past v0.4.
 
 ## 5. Tiers & Promotion
 
@@ -28,7 +60,23 @@ Status: **in progress — sections are being decided one by one.**
 
 ## 6. Threats & Events
 
-[To be decided]
+*Decided 2026-08-18: enemy content is flavor now, simulated rivals later.*
+
+- **Raid meter**: cumulative taxes collected raise it; thresholds trigger
+  vanilla raids at the colony bell. Illager Invasion enriches the raid
+  roster (a dozen new illager types) with zero integration work. Guard
+  boards / golems / walls / Big Cannons mitigate (v0.3 checks presence;
+  damage odds scale with defenses).
+- **Bandit settlements** (Villages & Pillages, Hostile Villages): worldgen
+  threat content — raid targets, reclaimable ruins that can be cleared and
+  re-chartered as colonies. **Rival charters** — enemy settlements that
+  grow, tax and raid like an opposing empire — are a designed-later chapter
+  (v0.5+), not scenery-forever: the door stays open by decision.
+- **Festivals**: ring the town bell holding a festival good (cake?) →
+  spend stocked goods for a happiness surge + fireworks. v0.3.
+- **Starvation** (shipped in v0.2): consecutive fully-unfed cycles kill
+  named citizens. Misfortune events (fire, disease) deferred until the
+  base loop is proven fun.
 
 ## 7. Reading the Simulation
 
@@ -36,7 +84,30 @@ Status: **in progress — sections are being decided one by one.**
 
 ## 8. Simulation Mechanics
 
-[To be decided]
+*Away rule decided 2026-08-18; remaining defaults adopted as recommended
+(overridable on request).*
+
+- **The away rule — capped ledger accrual.** A colony whose bell chunk is
+  unloaded accrues cycles (cap: 12). On the first loaded cycle it **settles
+  up** in one batch — accumulated consumption from the barrel, accumulated
+  production into output chests, growth/decline/hunger applied — and the
+  governor receives a *"While you were away…"* report. The cap means
+  absence can hurt a colony but never silently annihilate it. Population
+  entity changes (spawns, deaths) apply at settlement, when entities exist.
+- **Two rhythms**: the hourly **cycle** (consumption, production, moods)
+  and the **dawn report** (taxes, net food, population delta, warnings —
+  delivered to the governor wherever they are).
+- **Randomness policy**: zero RNG in yields and consumption — pure ledger.
+  Dice allowed only for event *timing* (when a raid fires), name
+  assignment, and flavor.
+- **Time base**: the in-game clock, not raw server ticks — cycles anchor to
+  world hours, the report to dawn. Night can feel different from day in
+  later versions.
+- **Scale**: no colony cap; colonies process staggered (one per tick-slice)
+  so an empire can't lag a server.
+- **State & recovery**: colony state in server persistentData keyed to the
+  bell; `/charter` command family (`ledger`, `audit`, `abandon`) for
+  inspection and repair.
 
 ## 9. Balance Sheet
 

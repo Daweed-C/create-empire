@@ -212,6 +212,13 @@ opt mr "yungs-better-mineshafts"         "YUNG's Better Mineshafts"
 opt mr "yungs-better-strongholds"        "YUNG's Better Strongholds"
 opt mr "yungs-better-desert-temples"     "YUNG's Better Desert Temples"
 opt mr "guard-villagers"                 "Guard Villagers"
+# Threat & enemy content per concept decisions 2026-08-18 (SPEC §6).
+opt mr "illager-invasion"                "Illager Invasion (richer raid roster)"
+opt mr "villages-and-pillages"           "Villages & Pillages (bandit settlements)"
+opt cf "hostile-villages"                "Hostile Villages (overrun ruins to reclaim)"
+# Imperial economy + speaking roles (SPEC §4 / research decisions).
+opt mr "lightmans-currency"              "Lightman's Currency (coins, shops, banks)"
+opt mr "easy-npc|cf:easy-npc"            "Easy NPC (dialog characters: advisors, emissaries)"
 # talhanation's hireable-humans suite — availability probe for 1.21.1
 # NeoForge (confirmed builds were 1.20.1 Forge; CI is the arbiter).
 opt mr "recruits|cf:recruits"            "Villager Recruits (soldiers, patrols, sieges)"
