@@ -118,10 +118,16 @@ add_mod() {
         pre=$(snapshotMods)
         if out=$("$PACKWIZ" modrinth add --project-id "${slug%%:*}" --version-id "${slug#*:}" -y 2>&1); then
           ok=1; autoAllowNew "$pre"
+          # Pin by project id, not by file newness: if the metafile already
+          # existed (dep-pulled earlier at latest), the add above rewrote it
+          # to the pinned version but a newness check would skip the pin and
+          # update --all would bump it right back.
+          pid="${slug%%:*}"
           for nf in mods/*.pw.toml; do
             [ -e "$nf" ] || continue
-            nb=$(basename "$nf")
-            case "$pre" in *" $nb "*) ;; *) "$PACKWIZ" pin "${nb%.pw.toml}" >/dev/null 2>&1 || true ;; esac
+            if grep -q "mod-id = \"$pid\"" "$nf"; then
+              "$PACKWIZ" pin "$(basename "${nf%.pw.toml}")" >/dev/null 2>&1 || true
+            fi
           done
           break
         fi ;;
