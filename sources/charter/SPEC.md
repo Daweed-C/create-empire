@@ -8,7 +8,37 @@ Status: **in progress — sections are being decided one by one.**
 
 ## 1. The Citizen
 
-[To be decided]
+*Decided 2026-08-18.*
+
+- **Identity**: every counted villager gets a persistent name (visible
+  nametag) from the name pool; events are personal, by name.
+- **Lifecycle — children first (1b)**: births produce *children* (vanilla
+  baby villagers) born into a household. **Children do not work and pay no
+  taxes** — population growth is an investment that matures, not instant
+  workforce. Maturation is vanilla-timed for now; the School service may
+  later accelerate or improve it. **No old-age death yet** — elders,
+  natural death and inheritance are reserved as a later chapter (the data
+  makes room for it: birth-cycle recorded per citizen).
+- **Households (2b, light)**: citizens assigned to the same registered
+  House form a named household. The household takes its name from the
+  House board's sign — **line 2 of the sign names the house** ("House"
+  on line 1, "Millbrook" on line 2 → *the Millbrook household*); unnamed
+  houses get a name from the pool. Births happen in households with room;
+  reports speak in families: "The Millbrooks work the North Farm."
+- **Happiness (3)**: one colony-level happiness value drives all mechanics
+  (Anno's ledger); per-citizen **story flags** — homeless, idle, hungry —
+  personalize reports without simulating individual moods ("Greta sleeps
+  under the stars"). Flags also pick event victims (homeless emigrate
+  first, hungry die first).
+- **Death & memory (4)**: the **Cemetery guild board**. When a citizen
+  dies, the sim raises a gravestone — a sign placed near the cemetery
+  board, auto-written with their name and fate. A colony's history becomes
+  legible in its churchyard. The dead lying unhonored (no cemetery
+  registered) costs happiness for several cycles; honored dead cost only a
+  one-cycle mourning. Graves persist forever — they are world history.
+- **Skills (5)**: deferred past v0.4. The per-citizen data slot is
+  reserved now (entity tags already carry identity) so veteran-worker
+  mechanics can arrive without migration.
 
 ## 2. Housing & the Town
 
