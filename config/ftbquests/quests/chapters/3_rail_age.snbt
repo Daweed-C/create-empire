@@ -1,0 +1,87 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "3_rail_age"
+	group: ""
+	icon: { id: "create:track" }
+	id: "0000000000000300"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"One colony is a town. Two colonies with a railway between them is the beginning of an empire."
+				""
+				"Craft Precision Mechanisms — the brass-age component that unlocks trains."
+			]
+			icon: { id: "create:precision_mechanism" }
+			id: "0000000000000301"
+			rewards: [{ id: "0000000000000381", item: "create:precision_mechanism", count: 2, type: "item" }]
+			size: 1.5d
+			tasks: [{ id: "0000000000000341", item: "create:precision_mechanism", type: "item" }]
+			title: "Precision Engineering"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000301"]
+			description: [
+				"Lay your first Train Track. Plan the route like a governor, not a miner — stations belong where colonies will grow, and Steam 'n' Rails adds everything from semaphores to custom bogeys to do it in style."
+			]
+			icon: { id: "create:track" }
+			id: "0000000000000302"
+			rewards: [{ id: "0000000000000382", item: "create:track", count: 64, type: "item" }]
+			tasks: [{ id: "0000000000000342", item: "create:track", count: 16L, type: "item" }]
+			title: "Iron Roads"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000302"]
+			description: [
+				"Build a Train Station, assemble a train on it, and give it a Schedule. Your first locomotive pulling out of the station is a moment worth a screenshot."
+			]
+			icon: { id: "create:railway_casing" }
+			id: "0000000000000303"
+			rewards: [{ id: "0000000000000383", item: "minecraft:gold_ingot", count: 16, type: "item" }]
+			tasks: [
+				{ id: "0000000000000343", item: "create:railway_casing", type: "item" }
+				{ id: "0000000000000344", item: "create:schedule", type: "item" }
+			]
+			title: "All Aboard"
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000303"]
+			description: [
+				"Found a second colony beyond the horizon — new biome, new resources, new problems — and connect it to your capital by rail."
+				""
+				"This one can't be checked automatically: click complete when your second Town Hall stands and the line is running."
+			]
+			icon: { id: "minecolonies:blockhuttownhall" }
+			id: "0000000000000304"
+			rewards: [{ id: "0000000000000384", item: "minecraft:emerald_block", count: 2, type: "item" }]
+			tasks: [{ id: "0000000000000345", title: "Second colony founded & connected by rail", type: "checkmark" }]
+			title: "The Twin Cities"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000304"]
+			description: [
+				"Make the railway earn its keep: run a scheduled freight train that hauls goods between your colonies — grain east, ingots west."
+				""
+				"Chest carriages + smart observers on the platforms make loading fully automatic."
+			]
+			icon: { id: "minecraft:chest_minecart" }
+			id: "0000000000000305"
+			rewards: [{ id: "0000000000000385", item: "minecraft:iron_block", count: 4, type: "item" }]
+			tasks: [{ id: "0000000000000346", title: "Automated freight line between two colonies", type: "checkmark" }]
+			title: "The Freight Economy"
+			x: 8.0d
+			y: 0.0d
+		}
+	]
+	title: "Chapter III · The Rail Age"
+}

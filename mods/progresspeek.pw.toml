@@ -1,0 +1,13 @@
+name = "Progress Peek"
+filename = "progresspeek-1.1.0+1.21.1-neoforge.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/1A2XNzUB/versions/Oa4LONcz/progresspeek-1.1.0%2B1.21.1-neoforge.jar"
+hash-format = "sha512"
+hash = "12be830ad5b373b0446063a7df30c91abfef83115313622fdc1e4783091dd4d7f2d2279237d4ca1617fafd85daa602996bebd269484b71a5ebf7ea9fe7bfbb5e"
+
+[update]
+[update.modrinth]
+mod-id = "1A2XNzUB"
+version = "Oa4LONcz"

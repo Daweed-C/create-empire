@@ -1,0 +1,15 @@
+# Create: Empire — MineColonies default world settings.
+# NeoForge copies this into each new world's serverconfig folder.
+# Tuned so raids matter (Threat & Defense pillar) and colonies can grow into
+# proper cities worth connecting by rail.
+
+[gameplay]
+	# A slightly larger starting crew so the industrialisation loop starts faster.
+	initialcitizenamount = 5
+	# Empires need big cities.
+	maxcitizenpercolony = 250
+	# Raids hit harder than default (default 5) — walls, guards and cannons matter.
+	raiddifficulty = 7
+	averageamountofnightsbetweenraids = 10
+	minimumnumberofnightsbetweenraids = 5
+	allowinfinitesupplychests = false

@@ -1,0 +1,13 @@
+name = "Polytone"
+filename = "polytone-1.21-5.0.5-neoforge.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/3qAYkBMB/versions/M82IGiNf/polytone-1.21-5.0.5-neoforge.jar"
+hash-format = "sha512"
+hash = "8e6979f153f7f7dd25eb66a6b7b5de0f852366b79a877172689b97e6f98ba2ce86a7f45166757f029ba370cd4fed70524d67370eed26980f1305d1332b19bada"
+
+[update]
+[update.modrinth]
+mod-id = "3qAYkBMB"
+version = "M82IGiNf"

@@ -1,0 +1,13 @@
+name = "Trigger Mobs"
+filename = "triggermobs-neoforge-1.21.1-1.5.6.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/zTVBLVOy/versions/jO8Jv35G/triggermobs-neoforge-1.21.1-1.5.6.jar"
+hash-format = "sha512"
+hash = "fd14a31d17592216313c84c0f7c52d1959a009e6aef7f7c39f740969f7416bf14440974ae84f40b22b191febfbe7ce1554ef46ba54f95938d23e4c4c7e5c5241"
+
+[update]
+[update.modrinth]
+mod-id = "zTVBLVOy"
+version = "jO8Jv35G"

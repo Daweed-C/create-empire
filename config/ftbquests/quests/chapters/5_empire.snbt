@@ -1,0 +1,91 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "5_empire"
+	group: ""
+	icon: { id: "minecraft:golden_apple" }
+	id: "0000000000000500"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Create 6's logistics network is your imperial postal service: Packagers box goods up, Stock Tickers take orders, and packages ride your trains and airships between colonies."
+				""
+				"Build a Packager and a Stock Ticker to open your first trade office."
+			]
+			icon: { id: "create:stock_ticker" }
+			id: "0000000000000501"
+			rewards: [{ id: "0000000000000581", item: "minecraft:paper", count: 32, type: "item" }]
+			size: 1.5d
+			tasks: [
+				{ id: "0000000000000541", item: "create:packager", type: "item" }
+				{ id: "0000000000000542", item: "create:stock_ticker", type: "item" }
+			]
+			title: "The Imperial Post"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000501"]
+			description: [
+				"Give each colony a specialty — the breadbasket, the forge town, the lumber camp — and set up standing trade routes so each exports its surplus and imports the rest."
+				""
+				"When a colony can order goods from another colony and they arrive without you touching anything, you have an economy."
+			]
+			icon: { id: "minecraft:emerald" }
+			id: "0000000000000502"
+			rewards: [{ id: "0000000000000582", item: "minecraft:emerald_block", count: 4, type: "item" }]
+			tasks: [{ id: "0000000000000543", title: "Three specialised colonies trading automatically", type: "checkmark" }]
+			title: "Division of Labour"
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0000000000000502"]
+			description: [
+				"An empire educates. Build a University in your capital and push colony research — your citizens' skills should grow as fast as your machines."
+			]
+			icon: { id: "minecolonies:blockhutuniversity" }
+			id: "0000000000000503"
+			rewards: [{ id: "0000000000000583", item: "minecraft:book", count: 16, type: "item" }]
+			tasks: [{ id: "0000000000000544", item: "minecolonies:blockhutuniversity", type: "item" }]
+			title: "The Enlightenment"
+			x: 4.0d
+			y: -1.0d
+		}
+		{
+			dependencies: ["0000000000000502"]
+			description: [
+				"Survive a max-difficulty raid on your capital without losing a single citizen. Guards trained, walls manned, cannons loaded."
+			]
+			icon: { id: "minecraft:shield" }
+			id: "0000000000000504"
+			rewards: [{ id: "0000000000000584", item: "minecraft:netherite_scrap", count: 2, type: "item" }]
+			tasks: [{ id: "0000000000000545", title: "Major raid repelled with zero citizen losses", type: "checkmark" }]
+			title: "The Unbreakable City"
+			x: 4.0d
+			y: 1.0d
+		}
+		{
+			dependencies: ["0000000000000503", "0000000000000504"]
+			description: [
+				"Five colonies. Connected by rail and air. Fed, defended, trading, researching — an empire that runs while you stand on a balcony watching the trains come in."
+				""
+				"Governor: your work here is done. (It is never done.)"
+			]
+			icon: { id: "minecraft:golden_apple" }
+			id: "0000000000000505"
+			rewards: [
+				{ id: "0000000000000585", item: "minecraft:netherite_ingot", count: 1, type: "item" }
+				{ id: "0000000000000586", item: "minecraft:golden_apple", count: 8, type: "item" }
+			]
+			size: 2.0d
+			tasks: [{ id: "0000000000000546", title: "Five living colonies under one flag", type: "checkmark" }]
+			title: "Pax Machina"
+			x: 6.0d
+			y: 0.0d
+		}
+	]
+	title: "Chapter V · The Empire"
+}

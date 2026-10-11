@@ -1,0 +1,13 @@
+name = "Framed Maps Fix"
+filename = "FramedMapsFix-1.21.1-1.0.5-NeoForge.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/N6wUhJWq/versions/1oYS4Uis/FramedMapsFix-1.21.1-1.0.5-NeoForge.jar"
+hash-format = "sha512"
+hash = "bfbb2ba6fa4c5c9c37693996eb8bc1ae48834ea12a0e658e8e1fa30aa06268d48210adf18260fd9d542d79a839082b8d61e01c7d10eb49d8663ed63381b91a5a"
+
+[update]
+[update.modrinth]
+mod-id = "N6wUhJWq"
+version = "1oYS4Uis"

@@ -1,0 +1,13 @@
+name = "Create: Stats & Power"
+filename = "create_stats-1.15.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/inKFQSzo/versions/GxIRYBRQ/create_stats-1.15.0.jar"
+hash-format = "sha512"
+hash = "03d3cbb29d66083ef7b18e2fcd2b6b426622c294a7345fdc9c1f07f595c566077faaca10f5c3f7ba9d5ed7ef3577171a73ace2a8c4f64ffe05717c5e65a5f5f3"
+
+[update]
+[update.modrinth]
+mod-id = "inKFQSzo"
+version = "GxIRYBRQ"

@@ -1,0 +1,13 @@
+name = "Hostile Villages"
+filename = "hostilevillages-1.21-5.7.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "8187298b820a267c89d603603a597576e8f73c13"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 5584612
+project-id = 473345
